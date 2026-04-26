@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bangor Scholarship Foundation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --red: #C8102E;
+  --red-dark: #a00d24;
+  --black: #0d0d0d;
+  --charcoal: #1c1c1c;
+  --mid: #555;
+  --muted: #888;
+  --rule: #e0e0de;
+  --bg: #fafaf8;
+  --white: #ffffff;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Barlow', system-ui, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--bg); color: var(--black); line-height: 1.6; }
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+
+/* ── Top bar ── */
+.topbar { background: var(--red); color: rgba(255,255,255,0.9); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 48px; display: flex; justify-content: space-between; align-items: center; }
+.topbar a { color: rgba(255,255,255,0.9); display: flex; align-items: center; gap: 5px; transition: color 0.15s; }
+.topbar a:hover { color: #fff; }
+
+/* ── Nav ── */
+.site-header { background: var(--white); border-bottom: 1px solid var(--rule); position: sticky; top: 0; z-index: 100; }
+.nav-inner { max-width: 1140px; margin: 0 auto; padding: 0 48px; height: 68px; display: flex; align-items: center; justify-content: space-between; }
+.nav-brand { display: flex; align-items: center; gap: 14px; }
+.nav-mark { width: 40px; height: 40px; border: 2px solid var(--red); display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer; transition: background 0.15s; }
+.nav-mark:hover { background: var(--red); }
+.nav-mark:hover span { color: #fff; }
+.nav-mark span { font-family: var(--serif); font-size: 14px; color: var(--red); font-weight: 700; }
+.nav-name { font-size: 15px; font-weight: 600; color: var(--black); line-height: 1.2; cursor: pointer; }
+.nav-name small { display: block; font-size: 10.5px; color: var(--muted); font-weight: 300; }
+.nav-links { display: flex; align-items: center; gap: 2px; }
+.nav-links a { font-size: 12.5px; font-weight: 500; color: var(--mid); padding: 6px 13px; transition: color 0.15s; cursor: pointer; }
+.nav-links a:hover, .nav-links a.active { color: var(--black); }
+.donate-btn { background: var(--red); color: #fff !important; padding: 8px 22px; margin-left: 10px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; font-size: 11px; transition: background 0.15s; }
+.donate-btn:hover { background: var(--red-dark) !important; }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; flex-direction: column; gap: 5px; }
+.nav-toggle span { display: block; width: 24px; height: 2px; background: var(--black); border-radius: 2px; }
+
+/* ── Page system ── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── Buttons ── */
+.btn-black { background: var(--black); color: #fff; font-size: 12px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; padding: 13px 28px; display: inline-block; transition: background 0.15s; cursor: pointer; border: none; }
+.btn-black:hover { background: var(--red); }
+.btn-outline-dark { background: transparent; color: var(--black); font-size: 12px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; padding: 13px 28px; display: inline-block; border: 1px solid var(--rule); transition: border-color 0.15s, background 0.15s; cursor: pointer; }
+.btn-outline-dark:hover { border-color: #bbb; background: var(--bg); }
+.btn-red { background: var(--red); color: #fff; font-size: 12px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; padding: 13px 28px; display: inline-block; transition: background 0.15s; cursor: pointer; border: none; }
+.btn-red:hover { background: var(--red-dark); }
+.btn-white { background: #fff; color: var(--red); font-size: 12px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; padding: 13px 28px; display: inline-block; transition: background 0.15s; }
+.btn-white:hover { background: #f0e0e3; }
+.btn-outline-white { background: transparent; color: #fff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 32px; display: inline-block; border: 1px solid rgba(255,255,255,0.25); transition: background 0.15s, border-color 0.15s; white-space: nowrap; }
+.btn-outline-white:hover { background: var(--red); border-color: var(--red); }
+
+/* ── Hero ── */
+.hero-wrap { background: var(--white); border-bottom: 1px solid var(--rule); }
+.hero { max-width: 1140px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 1fr 320px; min-height: 420px; align-items: stretch; }
+.hero-left { padding: 56px 56px 56px 0; border-right: 1px solid var(--rule); display: flex; flex-direction: column; justify-content: center; }
+.hero-kicker { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.kicker-bar { width: 3px; height: 18px; background: var(--red); flex-shrink: 0; }
+.hero-kicker span { font-size: 11px; font-weight: 600; color: var(--red); letter-spacing: 0.12em; text-transform: uppercase; }
+.hero h1 { font-family: var(--serif); font-size: 58px; font-weight: 400; line-height: 1.05; color: var(--black); margin-bottom: 22px; letter-spacing: -0.02em; }
+.hero h1 em { color: var(--red); font-style: italic; }
+.hero-desc { font-size: 15px; color: var(--mid); max-width: 460px; line-height: 1.75; margin-bottom: 34px; font-weight: 300; }
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-aside { display: flex; flex-direction: column; }
+.hero-panel { flex: 1; padding: 28px 32px; border-bottom: 1px solid var(--rule); display: flex; align-items: center; gap: 16px; }
+.hero-panel:last-child { border-bottom: none; }
+.panel-num { font-family: var(--serif); font-size: 38px; font-weight: 700; color: var(--red); line-height: 1; flex-shrink: 0; min-width: 80px; }
+.panel-text { font-size: 12px; color: var(--muted); line-height: 1.5; font-weight: 300; }
+.panel-text strong { display: block; font-size: 13px; color: var(--black); font-weight: 500; margin-bottom: 2px; }
+
+/* ── Rule banner ── */
+.rule-banner { background: var(--red); height: 6px; }
+
+/* ── 3 Paths ── */
+.paths-wrap { background: var(--bg); }
+.paths-section { max-width: 1140px; margin: 0 auto; padding: 72px 48px; }
+.section-header { display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: baseline; margin-bottom: 40px; border-bottom: 1px solid var(--rule); padding-bottom: 16px; }
+.section-header h2 { font-family: var(--serif); font-size: 26px; font-weight: 400; color: var(--black); }
+.section-header span { font-size: 11px; color: var(--muted); font-weight: 300; letter-spacing: 0.04em; }
+.paths-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.path-card { background: var(--white); padding: 36px 32px; display: flex; flex-direction: column; gap: 12px; transition: background 0.2s; }
+.path-card:hover { background: #fdf5f6; }
+.path-card:hover .path-arrow { color: var(--red); }
+.path-card:hover .path-index { color: #f5c5cd; }
+.path-index { font-size: 48px; font-family: var(--serif); font-weight: 700; color: var(--rule); line-height: 1; transition: color 0.2s; }
+.path-card h3 { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--black); line-height: 1.2; }
+.path-card p { font-size: 13px; color: var(--muted); line-height: 1.7; flex: 1; font-weight: 300; }
+.path-arrow { font-size: 12px; font-weight: 600; color: var(--mid); letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+.path-arrow::after { content: '→'; font-size: 14px; }
+
+/* ── Golf banner ── */
+.golf-section { background: var(--charcoal); }
+.golf-inner { max-width: 1140px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 1fr auto; align-items: center; min-height: 240px; gap: 48px; }
+.golf-label { font-size: 10px; font-weight: 600; color: var(--red); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 10px; }
+.golf-inner h2 { font-family: var(--serif); font-size: 30px; font-weight: 400; color: #fff; line-height: 1.2; margin-bottom: 10px; }
+.golf-inner p { font-size: 13px; color: #888; line-height: 1.7; font-weight: 300; }
+
+/* ── Lower section ── */
+.lower-wrap { background: var(--white); border-top: 1px solid var(--rule); }
+.lower-section { max-width: 1140px; margin: 0 auto; padding: 72px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; border-bottom: 1px solid var(--rule); }
+.col-title { font-family: var(--serif); font-size: 28px; font-weight: 400; color: var(--black); margin-bottom: 14px; line-height: 1.2; }
+.mission-col p { font-size: 14px; color: var(--mid); line-height: 1.8; font-weight: 300; margin-bottom: 28px; }
+.bylaws-list { border-top: 1px solid var(--rule); }
+.bylaws-list a { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 12.5px; color: var(--mid); font-weight: 300; transition: color 0.15s; cursor: pointer; }
+.bylaws-list a:hover { color: var(--red); }
+.newsletter-list { border-top: 1px solid var(--rule); }
+.nl-row { display: flex; align-items: center; justify-content: space-between; padding: 13px 0; border-bottom: 1px solid var(--rule); }
+.nl-row-left { display: flex; align-items: center; gap: 12px; }
+.nl-year { font-family: var(--serif); font-size: 16px; font-weight: 700; color: var(--red); min-width: 42px; }
+.nl-name { font-size: 13px; color: var(--black); font-weight: 300; }
+.nl-read { font-size: 11px; font-weight: 600; color: var(--mid); letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.15s; }
+.nl-read:hover { color: var(--red); }
+
+/* ── Inner page hero ── */
+.page-hero { background: var(--charcoal); padding: 56px 48px; border-bottom: 4px solid var(--red); }
+.page-hero-inner { max-width: 1140px; margin: 0 auto; }
+.page-label { font-size: 10px; font-weight: 600; color: var(--red); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 12px; }
+.page-hero h1 { font-family: var(--serif); font-size: 42px; font-weight: 400; color: #fff; line-height: 1.15; margin-bottom: 14px; }
+.page-hero p { font-size: 15px; color: #888; font-weight: 300; max-width: 560px; line-height: 1.75; }
+
+/* ── Page content ── */
+.page-content { max-width: 1140px; margin: 0 auto; padding: 64px 48px; }
+.page-content h2 { font-family: var(--serif); font-size: 28px; font-weight: 400; color: var(--black); margin-bottom: 16px; line-height: 1.2; }
+.page-content h3 { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--black); margin-bottom: 10px; margin-top: 32px; }
+.page-content p { font-size: 14px; color: var(--mid); line-height: 1.85; margin-bottom: 16px; font-weight: 300; }
+.page-content a { color: var(--red); }
+.page-content a:hover { text-decoration: underline; }
+.content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 64px; align-items: start; }
+.content-sidebar { background: var(--white); border: 1px solid var(--rule); padding: 28px; }
+.content-sidebar h3 { font-family: var(--serif); font-size: 18px; font-weight: 400; color: var(--black); margin-bottom: 14px; margin-top: 0; }
+.content-sidebar p { font-size: 13px; color: var(--mid); line-height: 1.75; margin-bottom: 12px; font-weight: 300; }
+
+/* ── Application steps ── */
+.app-steps { border: 1px solid var(--rule); margin-bottom: 36px; }
+.app-step { display: grid; grid-template-columns: 56px 1fr; border-bottom: 1px solid var(--rule); }
+.app-step:last-child { border-bottom: none; }
+.app-step-num { background: var(--red); color: #fff; font-family: var(--serif); font-size: 20px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.app-step-body { padding: 18px 24px; }
+.app-step-body h4 { font-size: 14px; font-weight: 600; color: var(--black); margin-bottom: 4px; }
+.app-step-body p { font-size: 13px; color: var(--mid); font-weight: 300; margin-bottom: 0; }
+
+/* ── Recipients grid ── */
+.recipients-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 8px; margin-bottom: 40px; }
+.recipient-card { background: var(--white); padding: 20px 22px; transition: background 0.15s; }
+.recipient-card:hover { background: #fdf5f6; }
+.recipient-year-tag { font-size: 10px; font-weight: 600; color: var(--red); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+.recipient-name { font-family: var(--serif); font-size: 16px; font-weight: 400; color: var(--black); line-height: 1.2; }
+.recipient-detail { font-size: 12px; color: var(--muted); margin-top: 4px; font-weight: 300; }
+.recipients-year-heading { font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--black); margin: 40px 0 12px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
+.recipients-year-heading:first-of-type { margin-top: 0; }
+
+/* ── Golf page ── */
+.golf-page-hero { background: var(--charcoal); padding: 64px 48px; border-bottom: 4px solid var(--red); }
+.golf-page-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 48px; }
+.golf-detail-box { display: flex; flex-direction: column; gap: 16px; }
+.golf-detail-item h4 { font-size: 10px; font-weight: 600; color: var(--red); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; }
+.golf-detail-item p { font-size: 14px; color: #aaa; font-weight: 300; }
+
+/* ── Contact ── */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+.contact-form input, .contact-form textarea {
+  width: 100%; padding: 11px 14px; border: 1px solid var(--rule);
+  background: var(--white); font-family: var(--sans); font-size: 13.5px;
+  color: var(--black); font-weight: 300; margin-bottom: 14px; display: block;
+  transition: border-color 0.15s; border-radius: 0; -webkit-appearance: none;
+}
+.contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--red); }
+.contact-form textarea { min-height: 130px; resize: vertical; }
+.contact-form label { font-size: 11px; font-weight: 600; color: var(--mid); letter-spacing: 0.06em; text-transform: uppercase; display: block; margin-bottom: 6px; }
+.contact-info-block { display: flex; flex-direction: column; gap: 28px; }
+.contact-info-item h4 { font-size: 11px; font-weight: 600; color: var(--red); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+.contact-info-item p { font-size: 14px; color: var(--mid); line-height: 1.75; font-weight: 300; }
+
+/* ── Donate ── */
+.donate-hero { background: var(--red); padding: 64px 48px; }
+.donate-hero-inner { max-width: 1140px; margin: 0 auto; }
+.donate-hero h1 { font-family: var(--serif); font-size: 42px; font-weight: 400; color: #fff; margin-bottom: 14px; line-height: 1.15; }
+.donate-hero p { font-size: 15px; color: rgba(255,255,255,0.8); max-width: 560px; line-height: 1.75; font-weight: 300; }
+.donate-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 40px; }
+.donate-option { background: var(--white); padding: 32px 28px; display: flex; flex-direction: column; gap: 10px; transition: background 0.2s; }
+.donate-option:hover { background: #fdf5f6; }
+.donate-amount { font-family: var(--serif); font-size: 36px; font-weight: 700; color: var(--red); }
+.donate-option h3 { font-family: var(--serif); font-size: 18px; font-weight: 400; color: var(--black); }
+.donate-option p { font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.6; flex: 1; }
+
+/* ── By Laws ── */
+.bylaws-content { max-width: 780px; }
+.bylaw-article { margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--rule); }
+.bylaw-article:last-child { border-bottom: none; }
+.bylaw-article h2 { font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--black); margin-bottom: 16px; }
+.bylaw-article p { font-size: 14px; color: var(--mid); line-height: 1.85; font-weight: 300; margin-bottom: 12px; }
+
+/* ── Footer ── */
+.site-footer { background: var(--black); }
+.footer-main { max-width: 1140px; margin: 0 auto; padding: 52px 48px 40px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; border-bottom: 1px solid #222; }
+.footer-brand-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.footer-mark { width: 34px; height: 34px; border: 1.5px solid var(--red); display: flex; align-items: center; justify-content: center; }
+.footer-mark span { font-family: var(--serif); font-size: 13px; color: var(--red); font-weight: 700; }
+.footer-brand-name { font-size: 14px; font-weight: 600; color: #fff; }
+.footer-about p { font-size: 12.5px; color: #555; line-height: 1.8; font-weight: 300; }
+.site-footer h4 { font-size: 10px; font-weight: 600; color: #fff; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+.site-footer nav a { display: block; font-size: 12.5px; color: #555; line-height: 2; font-weight: 300; transition: color 0.15s; cursor: pointer; }
+.site-footer nav a:hover { color: #ccc; }
+.footer-bottom { max-width: 1140px; margin: 0 auto; padding: 18px 48px; display: flex; justify-content: space-between; font-size: 11px; color: #333; font-weight: 300; }
+
+/* ── Animations ── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in { opacity: 0; transform: translateY(12px); transition: opacity 0.45s ease, transform 0.45s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+.hero-kicker { animation: fadeUp 0.5s ease both 0.05s; }
+.hero h1 { animation: fadeUp 0.5s ease both 0.12s; }
+.hero-desc { animation: fadeUp 0.5s ease both 0.2s; }
+.hero-ctas { animation: fadeUp 0.5s ease both 0.27s; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .topbar, .nav-inner, .page-hero, .page-content, .paths-section, .lower-section, .golf-inner, .footer-main, .footer-bottom, .donate-hero, .golf-page-hero { padding-left: 24px; padding-right: 24px; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-aside { display: none; }
+  .hero-left { padding: 40px 0; border-right: none; }
+  .hero h1 { font-size: 38px; }
+  .paths-grid, .lower-section, .content-grid, .contact-grid, .donate-options, .footer-main { grid-template-columns: 1fr; }
+  .golf-inner, .golf-page-inner { grid-template-columns: 1fr; padding-top: 40px; padding-bottom: 40px; }
+  .section-header { grid-template-columns: 1fr; }
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--rule); padding: 12px 0; }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 10px 24px; }
+  .nav-toggle { display: flex; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+  ✏️  SITE-WIDE SETTINGS — edit these values
+  ============================================================ -->
+
+<!-- ✏️ UPDATE: Facebook page URL -->
+<script>var FB_URL = "https://www.facebook.com/YourPageHere";</script>
+
+<!-- ✏️ UPDATE: PayPal donate button URL -->
+<script>var PAYPAL_URL = "https://www.paypal.com/donate/?hosted_button_id=YOURCODE";</script>
+
+<!-- ✏️ UPDATE: Contact email address -->
+<script>var CONTACT_EMAIL = "info@bangorscholarship.com";</script>
+
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span>Bangor Scholarship Foundation &mdash; Bangor, Wisconsin &mdash; Est. 1996</span>
+  <a href="#" onclick="openFB(); return false;">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    Facebook
+  </a>
+</div>
+
+<!-- NAV -->
+<header class="site-header">
+  <div class="nav-inner">
+    <div class="nav-brand" onclick="showPage('home')">
+      <div class="nav-mark"><span>BSF</span></div>
+      <div class="nav-name">Bangor Scholarship Foundation <small>Bangor, Wisconsin</small></div>
+    </div>
+    <nav class="nav-links" id="main-nav">
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('application')">Application</a>
+      <a onclick="showPage('golf')">Golf Outing</a>
+      <a onclick="showPage('recipients')">Recipients</a>
+      <a onclick="showPage('about')">About BSF</a>
+      <a onclick="showPage('bylaws')">By Laws</a>
+      <a onclick="showPage('contact')">Contact</a>
+      <a onclick="openPayPal()" class="donate-btn">Donate</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" onclick="toggleMobileNav()" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+
+<!-- ============================================================
+  PAGE: HOME
+  ============================================================ -->
+<div id="page-home" class="page active">
+
+  <!-- Hero -->
+  <div class="hero-wrap">
+    <div class="hero">
+      <div class="hero-left">
+        <div class="hero-kicker">
+          <div class="kicker-bar"></div>
+          <span>Nonprofit &middot; Bangor, WI &middot; Est. 1996</span>
+        </div>
+        <h1>Investing in Bangor's <em>next generation</em></h1>
+        <p class="hero-desc">The Bangor Scholarship Foundation raises funds and awards scholarships to students pursuing post-high school education. Every dollar raised stays right here in our community.</p>
+        <div class="hero-ctas">
+          <a onclick="showPage('application')" class="btn-black">Apply for a scholarship</a>
+          <a onclick="showPage('about')" class="btn-outline-dark">About BSF</a>
+        </div>
+      </div>
+      <aside class="hero-aside">
+        <div class="hero-panel">
+          <div class="panel-num">29+</div><!-- ✏️ UPDATE: years since 1996 -->
+          <div class="panel-text"><strong>Years of service</strong>Serving the Bangor community since 1996</div>
+        </div>
+        <div class="hero-panel">
+          <div class="panel-num">100%</div>
+          <div class="panel-text"><strong>Stays local</strong>Every dollar raised is awarded right here</div>
+        </div>
+        <div class="hero-panel">
+          <div class="panel-num" style="font-size:24px;line-height:1.2;">Annual Golf</div>
+          <div class="panel-text"><strong>Fundraiser event</strong>The Myrna &amp; Casey Davis Memorial Outing</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+  <div class="rule-banner"></div>
+
+  <!-- 3 Paths -->
+  <div class="paths-wrap">
+    <div class="paths-section">
+      <div class="section-header">
+        <h2>How to get involved</h2>
+        <span>Three ways to support or benefit from BSF</span>
+      </div>
+      <div class="paths-grid">
+        <div class="path-card fade-in">
+          <div class="path-index">01</div>
+          <h3>Apply for a scholarship</h3>
+          <p>Students from Bangor pursuing a post-high school degree are encouraged to apply each year. Download the application and submit before the deadline.</p>
+          <a onclick="showPage('application')" class="path-arrow">Get the application</a>
+        </div>
+        <div class="path-card fade-in">
+          <div class="path-index">02</div>
+          <h3>Donate to BSF</h3>
+          <p>Your gift goes directly to scholarships for Bangor students. Contribute any amount securely through PayPal &mdash; it makes a real difference.</p>
+          <a onclick="openPayPal()" class="path-arrow">Donate now</a>
+        </div>
+        <div class="path-card fade-in">
+          <div class="path-index">03</div>
+          <h3>Meet past recipients</h3>
+          <p>We're proud of every student we've supported. See the scholars and families honored by the foundation over the years.</p>
+          <a onclick="showPage('recipients')" class="path-arrow">View recipients</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Golf Banner -->
+  <section class="golf-section">
+    <div class="golf-inner">
+      <div>
+        <div class="golf-label">Annual Fundraiser &mdash; June 27, 2026</div>
+
+        <!-- ✏️ UPDATE: Golf outing headline if name changes -->
+        <h2>Myrna &amp; Casey Davis Memorial Golf Outing</h2>
+        <p>Fox Hollow Golf Course, Barre Mills &mdash; 9:00 AM shotgun start &mdash; $60 per golfer. All proceeds go directly toward scholarships for Bangor students.</p>
+      </div>
+      <a onclick="showPage('golf')" class="btn-outline-white">Event details &rarr;</a>
+    </div>
+  </section>
+
+  <!-- Mission + Newsletters -->
+  <div class="lower-wrap">
+    <div class="lower-section">
+      <div class="mission-col">
+        <h2 class="col-title">What is BSF?</h2>
+        <p>The Bangor Scholarship Foundation is a local, not-for-profit organization which exists solely to raise funds for post-high school education scholarships. All scholarship recipients are local Bangor High School graduates, or graduates who live in the Bangor School District. Scholarships are awarded by the BSF Selection Committee, which considers scholastic achievement, community leadership, financial need, and extra-curricular involvement.</p>
+        <nav class="bylaws-list">
+          <a onclick="showPage('bylaws')">Article 1 &mdash; Identification <span>&rsaquo;</span></a>
+          <a onclick="showPage('bylaws')">Article 2 &mdash; Purpose <span>&rsaquo;</span></a>
+          <a onclick="showPage('bylaws')">Article 3 &mdash; Meetings <span>&rsaquo;</span></a>
+          <a onclick="showPage('bylaws')">Article 4 &mdash; Order of Business <span>&rsaquo;</span></a>
+          <a onclick="showPage('bylaws')">Article 5 &mdash; Officers and Directors <span>&rsaquo;</span></a>
+          <a onclick="showPage('bylaws')">Article 6 &mdash; Election of Officers and Directors <span>&rsaquo;</span></a>
+          <a onclick="showPage('bylaws')">Article 7 &mdash; Duties of Officers <span>&rsaquo;</span></a>
+          <a onclick="showPage('bylaws')">Article 8 &mdash; Board of Directors <span>&rsaquo;</span></a>
+          <a onclick="showPage('bylaws')">Article 9 &mdash; Reimbursement <span>&rsaquo;</span></a>
+          <a onclick="showPage('bylaws')">Article 10 &mdash; Membership, Dues, Discharge <span>&rsaquo;</span></a>
+        </nav>
+      </div>
+
+      <div class="news-col">
+        <h2 class="col-title">Annual newsletters</h2>
+        <div class="newsletter-list">
+
+          <!-- ============================================================
+            ✏️  ADD NEW NEWSLETTERS HERE
+            Copy one <div class="nl-row">...</div> block and update the
+            year and the href to point to your PDF file.
+            Most recent year should be at the top.
+            ============================================================ -->
+
+          <div class="nl-row">
+            <div class="nl-row-left">
+              <span class="nl-year">2024</span>
+              <span class="nl-name">Annual Newsletter</span>
+            </div>
+            <a href="newsletters/2024-newsletter.pdf" target="_blank" class="nl-read">Read &rarr;</a>
+          </div>
+
+          <div class="nl-row">
+            <div class="nl-row-left">
+              <span class="nl-year">2023</span>
+              <span class="nl-name">Annual Newsletter</span>
+            </div>
+            <a href="newsletters/2023-newsletter.pdf" target="_blank" class="nl-read">Read &rarr;</a>
+          </div>
+
+          <div class="nl-row">
+            <div class="nl-row-left">
+              <span class="nl-year">2022</span>
+              <span class="nl-name">Annual Newsletter</span>
+            </div>
+            <a href="newsletters/2022-newsletter.pdf" target="_blank" class="nl-read">Read &rarr;</a>
+          </div>
+
+          <div class="nl-row">
+            <div class="nl-row-left">
+              <span class="nl-year">2021</span>
+              <span class="nl-name">Annual Newsletter</span>
+            </div>
+            <a href="newsletters/2021-newsletter.pdf" target="_blank" class="nl-read">Read &rarr;</a>
+          </div>
+
+          <div class="nl-row">
+            <div class="nl-row-left">
+              <span class="nl-year">2020</span>
+              <span class="nl-name">Annual Newsletter</span>
+            </div>
+            <a href="newsletters/2020-newsletter.pdf" target="_blank" class="nl-read">Read &rarr;</a>
+          </div>
+
+          <!-- END NEWSLETTERS -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end #page-home -->
+
+
+<!-- ============================================================
+  PAGE: APPLICATION
+  ============================================================ -->
+<div id="page-application" class="page">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-label">BSF &mdash; Apply</div>
+      <h1>Scholarship Application</h1>
+      <p>Download the current application and submit it before the deadline to be considered for a BSF scholarship.</p>
+    </div>
+  </div>
+  <div class="rule-banner"></div>
+  <div class="page-content">
+    <div class="content-grid">
+      <div>
+        <h2>To the applicant</h2>
+        <p>Please complete this application in full so we can determine your eligibility to receive funds which the Bangor Scholarship Foundation has set aside to help students who plan to go on to post-secondary education, and who satisfy other criteria developed by the Foundation. All scholarship recipients are local — they are all Bangor High School graduates, or graduates who live in the Bangor School District but who graduated from a private school such as Luther High School, Aquinas High School or Coulee Region Christian School.</p>
+        <p>Complete all sections of the application and return to (1) your school guidance counselor (to forward to one of the following); or (2) the Bangor Scholarship Foundation, P.O. Box 201, Bangor, WI 54614 no later than: <strong>March 13, 2026.</strong></p>
+        <p>If any questions are not applicable to your current situation, please attach an explanatory note referring to the questions by section. If more space is required for information on any items, you may attach additional information.</p>
+        <p>If you have any questions regarding this application, please contact: <strong>Kelly Peterson at <a href="mailto:president@bangorscholarshipfoundation.org">president@bangorscholarshipfoundation.org</a>.</strong></p>
+
+        <div class="app-steps" style="margin-top: 32px;">
+          <div class="app-step">
+            <div class="app-step-num">1</div>
+            <div class="app-step-body">
+              <h4>Download the application</h4>
+              <p>Choose your preferred format below — Google Doc, Word, or PDF.</p>
+            </div>
+          </div>
+          <div class="app-step">
+            <div class="app-step-num">2</div>
+            <div class="app-step-body">
+              <h4>Complete all sections</h4>
+              <p>Fill out every section in full. Incomplete applications will not be considered. Attach extra pages if needed.</p>
+            </div>
+          </div>
+          <div class="app-step">
+            <div class="app-step-num">3</div>
+            <div class="app-step-body">
+              <h4>Submit before the deadline</h4>
+              <!-- ✏️ UPDATE: Application deadline each year -->
+              <p>Applications are due no later than <strong>March 13, 2026</strong>.</p>
+            </div>
+          </div>
+          <div class="app-step">
+            <div class="app-step-num">4</div>
+            <div class="app-step-body">
+              <h4>Where to submit</h4>
+              <!-- ✏️ UPDATE: Submission instructions if they change -->
+              <p>Return to your school guidance counselor, or mail directly to: Bangor Scholarship Foundation, P.O. Box 201, Bangor, WI 54614.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ✏️ UPDATE: Application download links each year -->
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px;">
+          <a href="https://docs.google.com/document/d/1BPG1nkFumGbAgo_WLfSp56IRRIekBoAKa5xCtE0mHB4/edit?usp=sharing" class="btn-black" target="_blank" rel="noopener">Google Doc</a>
+          <a href="http://bangorscholarship.com/wp-content/uploads/2025/01/BSF-Scholarship-Application_2026.docx" class="btn-outline-dark" target="_blank" rel="noopener">Word Document</a>
+          <a href="http://bangorscholarship.com/wp-content/uploads/2025/12/BSF-Scholarship-Application_2026.pdf" class="btn-outline-dark" target="_blank" rel="noopener">PDF</a>
+        </div>
+
+      </div>
+      <aside>
+        <div class="content-sidebar">
+          <h3>Quick facts</h3>
+          <!-- ✏️ UPDATE: Deadline and contact each year -->
+          <p><strong>Deadline:</strong><br>March 13, 2026</p>
+          <p><strong>Submit to:</strong><br>Your guidance counselor, or<br>BSF, P.O. Box 201<br>Bangor, WI 54614</p>
+          <p><strong>Questions?</strong><br><a href="mailto:president@bangorscholarshipfoundation.org" style="color:var(--red);">president@bangorscholarshipfoundation.org</a></p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div><!-- end #page-application -->
+
+
+<!-- ============================================================
+  PAGE: GOLF OUTING
+  ============================================================ -->
+<div id="page-golf" class="page">
+  <div class="golf-page-hero">
+    <div class="golf-page-inner">
+      <div>
+        <div class="page-label">Annual Fundraiser</div>
+        <h1 style="font-family:var(--serif);font-size:42px;font-weight:400;color:#fff;line-height:1.15;margin-bottom:12px;">Myrna &amp; Casey Davis<br>Memorial Golf Outing</h1>
+        <p style="font-size:14px;color:#888;font-weight:300;line-height:1.75;">All proceeds go directly to scholarships for Bangor students.</p>
+      </div>
+      <!-- ✏️ UPDATE: Registration URL when available -->
+      <a href="#" onclick="alert('Registration link coming soon!'); return false;" class="btn-red">Register now</a>
+    </div>
+  </div>
+  <div class="rule-banner"></div>
+  <div class="page-content">
+    <div class="content-grid">
+      <div>
+        <h2>About the event</h2>
+
+        <!-- ✏️ UPDATE: Golf outing description each year -->
+        <p>The tournament in 2026 will be held on June 27th beginning at 9 a.m. at Fox Hollow Golf Course in Barre Mills. It will be a "shot gun" start meaning that all golfers start at once at various holes — which also means everyone finishes at the same time and can meet up and socialize after.</p>
+        <p>All proceeds go directly toward scholarships for Bangor students. Pay when you arrive — no pre-registration required.</p>
+
+        <h3>2026 Tournament Details</h3>
+
+        <div style="margin-top:16px;display:flex;flex-direction:column;gap:0;">
+
+          <!-- ✏️ UPDATE: Golf outing details each year -->
+          <div style="display:grid;grid-template-columns:160px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--rule);">
+            <span style="font-size:11px;font-weight:600;color:var(--red);letter-spacing:0.1em;text-transform:uppercase;">Date</span>
+            <span style="font-size:14px;color:var(--mid);font-weight:300;">Saturday, June 27, 2026</span>
+          </div>
+          <div style="display:grid;grid-template-columns:160px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--rule);">
+            <span style="font-size:11px;font-weight:600;color:var(--red);letter-spacing:0.1em;text-transform:uppercase;">Location</span>
+            <span style="font-size:14px;color:var(--mid);font-weight:300;">Fox Hollow Golf Course, Barre Mills, WI</span>
+          </div>
+          <div style="display:grid;grid-template-columns:160px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--rule);">
+            <span style="font-size:11px;font-weight:600;color:var(--red);letter-spacing:0.1em;text-transform:uppercase;">Shotgun start</span>
+            <span style="font-size:14px;color:var(--mid);font-weight:300;">9:00 AM</span>
+          </div>
+          <div style="display:grid;grid-template-columns:160px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--rule);">
+            <span style="font-size:11px;font-weight:600;color:var(--red);letter-spacing:0.1em;text-transform:uppercase;">Entry fee</span>
+            <span style="font-size:14px;color:var(--mid);font-weight:300;">$60 per golfer — includes green fees, cart &amp; entry fee</span>
+          </div>
+          <div style="display:grid;grid-template-columns:160px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--rule);">
+            <span style="font-size:11px;font-weight:600;color:var(--red);letter-spacing:0.1em;text-transform:uppercase;">Format</span>
+            <span style="font-size:14px;color:var(--mid);font-weight:300;">Shotgun start — all golfers begin at once at various holes</span>
+          </div>
+          <div style="display:grid;grid-template-columns:160px 1fr;gap:12px;padding:14px 0;">
+            <span style="font-size:11px;font-weight:600;color:var(--red);letter-spacing:0.1em;text-transform:uppercase;">Payment</span>
+            <span style="font-size:14px;color:var(--mid);font-weight:300;">Pay when you arrive — no pre-registration required</span>
+          </div>
+          <!-- END Golf outing details -->
+
+        </div>
+        <p style="margin-top:32px;font-size:16px;font-weight:600;color:var(--black);">See you on June 27!</p>
+      </div>
+      <aside>
+        <div class="content-sidebar">
+          <h3>2026 Details</h3>
+          <p><strong>Date:</strong><br>Saturday, June 27, 2026</p>
+          <p><strong>Location:</strong><br>Fox Hollow Golf Course<br>Barre Mills, WI</p>
+          <p><strong>Start time:</strong><br>9:00 AM shotgun start</p>
+          <p><strong>Entry fee:</strong><br>$60 per golfer<br><em style="font-size:12px;">Includes green fees, cart &amp; entry</em></p>
+          <p><strong>Questions?</strong><br><a href="#" onclick="openEmail(); return false;" style="color:var(--red);" id="contact-email-golf">Email us</a></p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div><!-- end #page-golf -->
+
+
+<!-- ============================================================
+  PAGE: PAST RECIPIENTS
+  ============================================================ -->
+<div id="page-recipients" class="page">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-label">BSF &mdash; Scholars</div>
+      <h1>Past Recipients</h1>
+      <p>Congratulations to all Bangor Scholarship Foundation recipients. We are proud to have supported each of these students.</p>
+    </div>
+  </div>
+  <div class="rule-banner"></div>
+  <div class="page-content">
+
+    <!-- ============================================================
+      ✏️  ADD NEW RECIPIENTS HERE
+      Copy one recipient-card block and add it to the correct year grid.
+      To add a new year, copy a full year section and update the year number.
+      Most recent year should be at the TOP.
+      ============================================================ -->
+
+    <h2 class="recipients-year-heading">2025</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2025 Recipient</div>
+        <div class="recipient-name">Anna Fronk</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2025 Recipient</div>
+        <div class="recipient-name">Alexa Heitkamp</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2025 Recipient</div>
+        <div class="recipient-name">Bliss Knox</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2025 Recipient</div>
+        <div class="recipient-name">Aubrey Langrehr</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2025 Recipient</div>
+        <div class="recipient-name">Harrison Regan</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2025 Recipient</div>
+        <div class="recipient-name">Jacob Warsing</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2025 Recipient</div>
+        <div class="recipient-name">Rylee Lyga</div>
+        <div class="recipient-detail">Dorothy Wolf Memorial Scholarship</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2025 Recipient</div>
+        <div class="recipient-name">Brock Bores</div>
+        <div class="recipient-detail">Dave and Jana Langrehr Scholarship</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2025 Recipient</div>
+        <div class="recipient-name">Andrew Schaub</div>
+        <div class="recipient-detail">Gerald and Marcella Horman Scholarship</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2024</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2024 Recipient</div>
+        <div class="recipient-name">Gladys Bores</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2024 Recipient</div>
+        <div class="recipient-name">Samuel Crenshaw</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2024 Recipient</div>
+        <div class="recipient-name">Alycia Felch</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2024 Recipient</div>
+        <div class="recipient-name">Ella Hansen</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2024 Recipient</div>
+        <div class="recipient-name">Nolan Langrehr</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2024 Recipient</div>
+        <div class="recipient-name">Emily Warsing</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2024 Recipient</div>
+        <div class="recipient-name">Ella Janisch</div>
+        <div class="recipient-detail">Dorothy Wolf Memorial Scholarship</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2024 Recipient</div>
+        <div class="recipient-name">Nolan Michek</div>
+        <div class="recipient-detail">Dave and Jana Langrehr Scholarship</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2024 Recipient</div>
+        <div class="recipient-name">Nolan Langrehr</div>
+        <div class="recipient-detail">Gerald and Marcella Horman Scholarship</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2023</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2023 Recipient</div>
+        <div class="recipient-name">Alexander Adams</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2023 Recipient</div>
+        <div class="recipient-name">Joeryn Freit</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2023 Recipient</div>
+        <div class="recipient-name">Kyleigh Groll</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2023 Recipient</div>
+        <div class="recipient-name">Sadie Kassera</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2023 Recipient</div>
+        <div class="recipient-name">Benjamin Lockman</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2023 Recipient</div>
+        <div class="recipient-name">Adrianna Massman</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2023 Recipient</div>
+        <div class="recipient-name">Gabrielle Schroeder</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2023 Recipient</div>
+        <div class="recipient-name">Clayton Lyga</div>
+        <div class="recipient-detail">Dorothy Wolf Memorial Scholarship</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2023 Recipient</div>
+        <div class="recipient-name">Lucas Hajek</div>
+        <div class="recipient-detail">Dave and Jana Langrehr Scholarship</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2023 Recipient</div>
+        <div class="recipient-name">Kyleigh Groll</div>
+        <div class="recipient-detail">Gerald and Marcella Horman Scholarship</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2022</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2022 Recipient</div>
+        <div class="recipient-name">Madelyn England</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2022 Recipient</div>
+        <div class="recipient-name">Taylor Jacobson</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2022 Recipient</div>
+        <div class="recipient-name">Madeline Janisch</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2022 Recipient</div>
+        <div class="recipient-name">Aliyah Langrehr</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2022 Recipient</div>
+        <div class="recipient-name">Ashton Michek</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2022 Recipient</div>
+        <div class="recipient-name">Treyton Peters</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2022 Recipient</div>
+        <div class="recipient-name">Madisyn Herman</div>
+        <div class="recipient-detail">Dorothy Wolf Memorial Scholarship</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2022 Recipient</div>
+        <div class="recipient-name">Madisyn Herman and Samantha Nelson</div>
+        <div class="recipient-detail">Gerald and Marcella Horman Scholarship</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2021</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2021 Recipient</div>
+        <div class="recipient-name">Karissa Adams</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2021 Recipient</div>
+        <div class="recipient-name">Dustin Heitkamp</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2021 Recipient</div>
+        <div class="recipient-name">Haley Jones</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2021 Recipient</div>
+        <div class="recipient-name">Megan Miedema</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2021 Recipient</div>
+        <div class="recipient-name">Clara Nicolai</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2021 Recipient</div>
+        <div class="recipient-name">Samuel Wittmershaus</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2021 Recipient</div>
+        <div class="recipient-name">Hayden Lyga</div>
+        <div class="recipient-detail">Dave and Jana Langrehr Scholarship</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2021 Recipient</div>
+        <div class="recipient-name">Elizabeth Glandt</div>
+        <div class="recipient-detail">Dorothy Wolf Memorial Scholarship</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2021 Recipient</div>
+        <div class="recipient-name">Jadyn Larson</div>
+        <div class="recipient-detail">Gerald and Marcella Horman Scholarship</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2020</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2020 Recipient</div>
+        <div class="recipient-name">Andrea Glandt</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2020 Recipient</div>
+        <div class="recipient-name">Frederick Glandt</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2020 Recipient</div>
+        <div class="recipient-name">Jadrian Lor</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2020 Recipient</div>
+        <div class="recipient-name">Karsen Kershner</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2020 Recipient</div>
+        <div class="recipient-name">Adam Streeton</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2020 Recipient</div>
+        <div class="recipient-name">Kaci Theurer</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2020 Recipient</div>
+        <div class="recipient-name">Cassidy Bores</div>
+        <div class="recipient-detail">Bruce and Jerrilyn Brewer Scholarship</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2020 Recipient</div>
+        <div class="recipient-name">Carter Horstman</div>
+        <div class="recipient-detail">Dave and Jana Langrehr Scholarship</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2020 Recipient</div>
+        <div class="recipient-name">Jayden Nachtigal</div>
+        <div class="recipient-detail">Dave and Jana Langrehr Scholarship</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2019</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2019 Recipient</div>
+        <div class="recipient-name">Ashlie Lockington</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2019 Recipient</div>
+        <div class="recipient-name">Courtney Oesterle</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2019 Recipient</div>
+        <div class="recipient-name">Dylan Sprain</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2019 Recipient</div>
+        <div class="recipient-name">Cora Kostuch</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2019 Recipient</div>
+        <div class="recipient-name">Noah Friet</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2019 Recipient</div>
+        <div class="recipient-name">Kaitlyn Stratman</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2019 Recipient</div>
+        <div class="recipient-name">Josephine Hansen</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2019 Recipient</div>
+        <div class="recipient-name">Kaitlyn Solberg</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2019 Recipient</div>
+        <div class="recipient-name">Ashlie Lockington</div>
+        <div class="recipient-detail">Bruce and Jerrilyn Brewer Scholarship</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2019 Recipient</div>
+        <div class="recipient-name">Jaymeson Freit</div>
+        <div class="recipient-detail">Dave and Jana Langrehr Scholarship</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2018</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2018 Recipient</div>
+        <div class="recipient-name">Elizabeth Nicolai</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2018 Recipient</div>
+        <div class="recipient-name">Cade Amborn</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2018 Recipient</div>
+        <div class="recipient-name">Alea Fortier</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2018 Recipient</div>
+        <div class="recipient-name">Emma Wittmershaus</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2018 Recipient</div>
+        <div class="recipient-name">Colin Buchholz</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2018 Recipient</div>
+        <div class="recipient-name">Haylee Leonard</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2018 Recipient</div>
+        <div class="recipient-name">Drew Johnson</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2018 Recipient</div>
+        <div class="recipient-name">Sarah Hannan</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2018 Recipient</div>
+        <div class="recipient-name">Jaclynn Freit</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2018 Recipient</div>
+        <div class="recipient-name">Brynn Langrehr</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2018 Recipient</div>
+        <div class="recipient-name">Ethan Jacobson</div>
+        <div class="recipient-detail">Dave and Jana Langrehr Scholarship</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2017</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2017 Recipient</div>
+        <div class="recipient-name">Haley Freybler</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2017 Recipient</div>
+        <div class="recipient-name">Hallie Horstman</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2017 Recipient</div>
+        <div class="recipient-name">Mikaela Jepson</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2017 Recipient</div>
+        <div class="recipient-name">Alex Matz</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2017 Recipient</div>
+        <div class="recipient-name">Breanna Mikshowsky</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2017 Recipient</div>
+        <div class="recipient-name">Tristan Shawley</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2016</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2016 Recipient</div>
+        <div class="recipient-name">Katie Horstman</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2016 Recipient</div>
+        <div class="recipient-name">Samuel Johnson</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2016 Recipient</div>
+        <div class="recipient-name">Kellen Kravik</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2016 Recipient</div>
+        <div class="recipient-name">Seth Plenge</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2016 Recipient</div>
+        <div class="recipient-name">Jack Reader</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2016 Recipient</div>
+        <div class="recipient-name">Karlee Tart</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2016 Recipient</div>
+        <div class="recipient-name">Kassidy Wuensch</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2015</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2015 Recipient</div>
+        <div class="recipient-name">Trygvie Anderson</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2015 Recipient</div>
+        <div class="recipient-name">Gunnar Horstman</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2015 Recipient</div>
+        <div class="recipient-name">Morgan Horstman</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2015 Recipient</div>
+        <div class="recipient-name">Alexandra Kershner</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2015 Recipient</div>
+        <div class="recipient-name">Madison Langrehr</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2015 Recipient</div>
+        <div class="recipient-name">Aspen Zimmer</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2014</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2014 Recipient</div>
+        <div class="recipient-name">Heidi Hesselberg</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2014 Recipient</div>
+        <div class="recipient-name">Kelly Kerrigan</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2014 Recipient</div>
+        <div class="recipient-name">Broedy Jepson</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2014 Recipient</div>
+        <div class="recipient-name">Brianna Mikshowsky</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2014 Recipient</div>
+        <div class="recipient-name">Andrew Lockington</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2014 Recipient</div>
+        <div class="recipient-name">Alyssa Nuttleman</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2013</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2013 Recipient</div>
+        <div class="recipient-name">Danyana Johnson</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2013 Recipient</div>
+        <div class="recipient-name">Adam Meyers</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2013 Recipient</div>
+        <div class="recipient-name">Kelsey Paisley</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2013 Recipient</div>
+        <div class="recipient-name">Tyler Shrake</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2013 Recipient</div>
+        <div class="recipient-name">Miranda Tovar</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2013 Recipient</div>
+        <div class="recipient-name">Alex Peters</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2012</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2012 Recipient</div>
+        <div class="recipient-name">Kali Burkhardt</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2012 Recipient</div>
+        <div class="recipient-name">Kailey Hilby</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2012 Recipient</div>
+        <div class="recipient-name">Mikayla Horstman</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2012 Recipient</div>
+        <div class="recipient-name">Kayla Radke</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2012 Recipient</div>
+        <div class="recipient-name">Leslie Thompson</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2012 Recipient</div>
+        <div class="recipient-name">Anne Wermedal</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2011</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2011 Recipient</div>
+        <div class="recipient-name">Morgan Gerke</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2011 Recipient</div>
+        <div class="recipient-name">Andrew Parr</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2011 Recipient</div>
+        <div class="recipient-name">Kayla Servais</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2011 Recipient</div>
+        <div class="recipient-name">Jessica Vetrano</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2011 Recipient</div>
+        <div class="recipient-name">Brook White</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2011 Recipient</div>
+        <div class="recipient-name">Maryann Hundt</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2010</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2010 Recipient</div>
+        <div class="recipient-name">Jason Burkhardt</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2010 Recipient</div>
+        <div class="recipient-name">Tiffani Nierling</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2010 Recipient</div>
+        <div class="recipient-name">Sarah Reigel</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2010 Recipient</div>
+        <div class="recipient-name">Steven Peters</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2010 Recipient</div>
+        <div class="recipient-name">Brandon Scharping</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2010 Recipient</div>
+        <div class="recipient-name">Jacob Schmidt</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2009</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2009 Recipient</div>
+        <div class="recipient-name">Devin Tenner</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2009 Recipient</div>
+        <div class="recipient-name">Ashley Meyer</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2009 Recipient</div>
+        <div class="recipient-name">Ashley Anderson</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2009 Recipient</div>
+        <div class="recipient-name">Eric Wermadahl</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2009 Recipient</div>
+        <div class="recipient-name">Stephanie Peters</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2009 Recipient</div>
+        <div class="recipient-name">Gregory Cedarblade</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2009 Recipient</div>
+        <div class="recipient-name">Keaton Hilby</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2008</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2008 Recipient</div>
+        <div class="recipient-name">Kathryn Filla</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2008 Recipient</div>
+        <div class="recipient-name">Joseph Vargo</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2008 Recipient</div>
+        <div class="recipient-name">Megan Gerke</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2008 Recipient</div>
+        <div class="recipient-name">Emily Mashak</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2008 Recipient</div>
+        <div class="recipient-name">Emily Schroeder</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2008 Recipient</div>
+        <div class="recipient-name">Desiree Parker</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2007</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2007 Recipient</div>
+        <div class="recipient-name">Cheryl Hundt</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2007 Recipient</div>
+        <div class="recipient-name">Katanya Kerkman</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2007 Recipient</div>
+        <div class="recipient-name">Audrey Reigel</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2007 Recipient</div>
+        <div class="recipient-name">Randee Rowell</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2007 Recipient</div>
+        <div class="recipient-name">Matt Schwemlein</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2007 Recipient</div>
+        <div class="recipient-name">Eric Wermedahl</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2007 Recipient</div>
+        <div class="recipient-name">Jenna Wolf</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2006</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2006 Recipient</div>
+        <div class="recipient-name">Emily Meyers</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2006 Recipient</div>
+        <div class="recipient-name">Danielle Arndt</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2006 Recipient</div>
+        <div class="recipient-name">Jennifer Leis</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2006 Recipient</div>
+        <div class="recipient-name">Brittany Wells</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2006 Recipient</div>
+        <div class="recipient-name">Chelsea Jerome</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2006 Recipient</div>
+        <div class="recipient-name">Tyler Schroeder</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2005</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2005 Recipient</div>
+        <div class="recipient-name">Kim Jones</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2005 Recipient</div>
+        <div class="recipient-name">Megan Wagner</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2005 Recipient</div>
+        <div class="recipient-name">Elizabeth Quall</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2005 Recipient</div>
+        <div class="recipient-name">Jennifer Kapanke</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2005 Recipient</div>
+        <div class="recipient-name">Nick Ikert</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2005 Recipient</div>
+        <div class="recipient-name">Jacie Gamroth</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2004</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2004 Recipient</div>
+        <div class="recipient-name">Shauna Carter</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2004 Recipient</div>
+        <div class="recipient-name">David Hefti</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2004 Recipient</div>
+        <div class="recipient-name">Malory Hendrickson</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2004 Recipient</div>
+        <div class="recipient-name">Elizabeth Hundt</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2004 Recipient</div>
+        <div class="recipient-name">Katie Mashak</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2004 Recipient</div>
+        <div class="recipient-name">Kristina Vargo</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2003</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2003 Recipient</div>
+        <div class="recipient-name">Sarah Hansen</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2003 Recipient</div>
+        <div class="recipient-name">Samantha Korn</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2003 Recipient</div>
+        <div class="recipient-name">Rebecca Peterson</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2003 Recipient</div>
+        <div class="recipient-name">Jessica Schwarz</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2003 Recipient</div>
+        <div class="recipient-name">Justin Valletta</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2002</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2002 Recipient</div>
+        <div class="recipient-name">Tiffany Morgan</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2002 Recipient</div>
+        <div class="recipient-name">Kelly Schaller</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2002 Recipient</div>
+        <div class="recipient-name">Lisa Watson</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2002 Recipient</div>
+        <div class="recipient-name">Lindsay Wolf</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2002 Recipient</div>
+        <div class="recipient-name">Brad Schaller</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2001</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2001 Recipient</div>
+        <div class="recipient-name">Jennifer Althoff</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2001 Recipient</div>
+        <div class="recipient-name">David Christensen</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2001 Recipient</div>
+        <div class="recipient-name">Megan Craig</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2001 Recipient</div>
+        <div class="recipient-name">Jennifer Hatz</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">2000</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2000 Recipient</div>
+        <div class="recipient-name">Kristin Campbell</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2000 Recipient</div>
+        <div class="recipient-name">Amy Inlow</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2000 Recipient</div>
+        <div class="recipient-name">Jill Watson</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">2000 Recipient</div>
+        <div class="recipient-name">Robin Welcher</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">1999</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">1999 Recipient</div>
+        <div class="recipient-name">Melissa Althoff</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">1999 Recipient</div>
+        <div class="recipient-name">Shane Amundson</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">1999 Recipient</div>
+        <div class="recipient-name">Danielle Lawson</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">1999 Recipient</div>
+        <div class="recipient-name">Neil Olson</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">1998</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">1998 Recipient</div>
+        <div class="recipient-name">Benjamin Campbell</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">1998 Recipient</div>
+        <div class="recipient-name">Sondra Craig</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">1998 Recipient</div>
+        <div class="recipient-name">Benjamin Koss</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">1998 Recipient</div>
+        <div class="recipient-name">Kyle Niedfeldt</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">1997</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">1997 Recipient</div>
+        <div class="recipient-name">Amanda Korn</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">1997 Recipient</div>
+        <div class="recipient-name">Melissa Leis</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">1997 Recipient</div>
+        <div class="recipient-name">Rhonda Rueckheim</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">1997 Recipient</div>
+        <div class="recipient-name">Brent Christopherson</div>
+      </div>
+    </div>
+
+    <h2 class="recipients-year-heading">1996</h2>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-year-tag">1996 Recipient</div>
+        <div class="recipient-name">Travis Bolcerek</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">1996 Recipient</div>
+        <div class="recipient-name">Denise Petersen</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">1996 Recipient</div>
+        <div class="recipient-name">Sarah Schulz</div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-year-tag">1996 Recipient</div>
+        <div class="recipient-name">Christine Welcher</div>
+      </div>
+    </div>
+
+    <!-- END RECIPIENTS — add older years below this line -->
+
+  </div>
+</div><!-- end #page-recipients -->
+
+
+<!-- ============================================================
+  PAGE: ABOUT BSF
+  ============================================================ -->
+<div id="page-about" class="page">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-label">BSF &mdash; About</div>
+      <h1>What is BSF?</h1>
+      <p>Learn about the Bangor Scholarship Foundation, our mission, and the people who make it possible.</p>
+    </div>
+  </div>
+  <div class="rule-banner"></div>
+  <div class="page-content">
+    <div class="content-grid">
+      <div>
+        <h2>Our mission</h2>
+        <p>The Bangor Scholarship Foundation is a local, not-for-profit organization which exists solely to raise funds for post-high school education scholarships. All scholarship recipients are local — they are all Bangor High School graduates, or graduates who live in the Bangor School District but who graduated from a private school such as Luther High School, Aquinas High School, or Coulee Region Christian School.</p>
+        <p>The scholarships are awarded by the Bangor Scholarship Foundation Selection Committee. The Selection Committee considers numerous factors, including scholastic achievement, community leadership, financial need, scholastic contribution through involvement in extra-curricular activities, and other indications that the student will become a positive citizen and contributor to society. The Selection Committee does not discriminate based upon race, religion, or gender.</p>
+        <p>Scholarship recipients are required to maintain a performance level and conduct adequate to allow graduation or completion of the program in which the student is enrolled. The student must be enrolled and attending an accredited institution.</p>
+
+        <h3 id="officers">Officers &amp; board</h3>
+
+        <!-- ✏️ UPDATE: Officers and board members as they change -->
+        <p>BSF is governed by a volunteer board of directors. For current officer information, please <a onclick="showPage('contact')" style="cursor:pointer;">contact us</a>.</p>
+
+        <h3>Scholarship amount</h3>
+
+        <!-- ✏️ UPDATE: Scholarship amount if it changes -->
+        <p>Contact us for details on the current scholarship award amount.</p>
+
+      </div>
+      <aside>
+        <div class="content-sidebar">
+          <h3>Quick links</h3>
+          <p><a onclick="showPage('application')" style="color:var(--red);cursor:pointer;">Apply for a scholarship &rarr;</a></p>
+          <p><a onclick="showPage('golf')" style="color:var(--red);cursor:pointer;">Golf outing &rarr;</a></p>
+          <p><a onclick="showPage('bylaws')" style="color:var(--red);cursor:pointer;">Read our by laws &rarr;</a></p>
+          <p><a onclick="openPayPal()" style="color:var(--red);cursor:pointer;">Donate &rarr;</a></p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div><!-- end #page-about -->
+
+
+<!-- ============================================================
+  PAGE: BY LAWS
+  ============================================================ -->
+<div id="page-bylaws" class="page">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-label">BSF &mdash; Governance</div>
+      <h1>By Laws</h1>
+      <p>The governing documents of the Bangor Scholarship Foundation, Inc.</p>
+    </div>
+  </div>
+  <div class="rule-banner"></div>
+  <div class="page-content">
+    <div class="bylaws-content">
+
+      <!-- ✏️ UPDATE: By laws text if governance changes -->
+
+      <div class="bylaw-article" id="article-1">
+        <h2>Article 1 &mdash; Identification</h2>
+        <p><strong>Section 1.01.</strong> Name. The corporation's name is Bangor Scholarship Foundation, Inc. (the "corporation").</p>
+        <p><strong>Section 1.02.</strong> Principal and Business Offices. The corporation may have such principal and other business offices, either within or outside the state of Wisconsin, as the board of directors may designate or as the corporation's business may require from time to time.</p>
+        <p><strong>Section 1.03.</strong> Registered Agent and Office. The corporation's registered agent may be changed from time to time by or under the authority of the board of directors. The address of the corporation's registered office may be changed from time to time by or under the authority of the board of directors, or by the registered agent. The business office of the corporation's registered agent shall be identical to the registered office. The corporation's registered office may be, but need not be, identical with the corporation's principal office in the state of Wisconsin.</p>
+        <p><strong>Section 1.04.</strong> Place of Keeping Corporate Records. The records and documents required by law to be kept by the corporation permanently shall be kept at the corporation's principal office.</p>
+      </div>
+
+      <div class="bylaw-article" id="article-2">
+        <h2>Article 2 &mdash; Purpose</h2>
+        <p><strong>Section 2.01.</strong> The purpose of the Bangor Scholarship Foundation, Inc. shall solely be to raise funds for scholarships and award scholarships to students pursuing degrees in post-high school education. Scholarships shall be awarded based upon the criteria of the selection committee, which shall include but not be limited to, scholastic achievement, community leadership, financial need, scholastic contribution through involvement in extra curricular activities, and other indications that the student will become a positive citizen and contributor to society. The selection shall not discriminate against any student based on race, religion or sex. Scholarship applications shall be open to all graduates of Bangor High School, or any high school graduate who resides in the Bangor School District but attends a private high school, including but not limited to Luther High School, Aquinas High School and Coulee Region Christian School. The selected student will be required to maintain an academic performance level and conduct adequate to allow graduation or completion of the program in which the student is enrolled. The student must be attending an accredited institution.</p>
+      </div>
+
+      <div class="bylaw-article" id="article-3">
+        <h2>Article 3 &mdash; Meetings</h2>
+        <p><strong>Section 3.01.</strong> The Annual Meeting of members of the corporation shall be held the second Monday in September of each year at 100 North 17th Avenue, Bangor, Wisconsin.</p>
+        <p><strong>Section 3.02.</strong> The Executive Board, consisting of the Officers and the Board of Directors of the corporation, shall meet once a month or at necessary intervals, at a time and place to be determined by the Executive Board. This meeting time shall be made known to the corporation's general membership, any of who may attend Executive Board meetings.</p>
+        <p><strong>Section 3.03.</strong> Any five (5) Executive Board members shall constitute a quorum.</p>
+      </div>
+
+      <div class="bylaw-article" id="article-4">
+        <h2>Article 4 &mdash; Order of Business</h2>
+        <p><strong>Section 4.01.</strong> The purpose of the Annual Meeting of members of the corporation shall be as follows:</p>
+        <p>a. To conduct elections of the corporation's Officers and Directors.<br>b. To facilitate amendments to the Articles and Bylaws.<br>c. To conduct other business of the corporation at the recommendation of the Executive Board.</p>
+        <p><strong>Section 4.02.</strong> The purpose of the Executive Board meetings will be to conduct the operational portion of the corporation's business. Typical functions will include, but are not limited to:</p>
+        <p>a. Reading the minutes of the preceding meeting.<br>b. Reading the Treasurer's report.<br>c. Reading any Committee reports.<br>d. Discussing scholarship candidates and select recipients.<br>e. Planning fundraisers and other functions.</p>
+      </div>
+
+      <div class="bylaw-article" id="article-5">
+        <h2>Article 5 &mdash; Officers and Directors</h2>
+        <p><strong>Section 5.01.</strong> The officers of the corporation shall be: President, Vice President, Secretary and Treasurer. Officers shall be elected for a term of one year.</p>
+        <p><strong>Section 5.02.</strong> There shall be a Board of Directors composed of no less than six (6) and no more than fifteen (15) members. Directors shall serve for a term of three years, the terms of the Directors begin determined by lot or so other equitable procedure. No term limits are specified for Directors.</p>
+      </div>
+
+      <div class="bylaw-article" id="article-6">
+        <h2>Article 6 &mdash; Election of Officers and Directors</h2>
+        <p><strong>Section 6.01.</strong> At least thirty (30) days prior to the annual September meeting where Officers and Directors are to be elected, the Executive Board will nominate candidates for all offices declared vacant. As an alternate procedure, the President may appoint a committee of members who are neither Officers nor Directors to serve as a nominating committee. The names of all candidates will be made known to the corporation's Secretary.</p>
+        <p><strong>Section 6.02.</strong> Additional nominations for Officers and Directors may be made from the floor by any member at the meeting.</p>
+        <p><strong>Section 6.03.</strong> The election may be by ballot or voice vote under the supervision of the corporation's officers. The candidates receiving the highest number of votes shall be declared elected.</p>
+        <p><strong>Section 6.04.</strong> A vacancy in the office of President shall be filled by the Vice President. A vacancy in the office of Vice President shall be filled by an election by the Executive Board of a member of the Board of Directors. Vacancies occurring in the offices of Secretary or Treasurer or Directors by resignation or other reason shall be filled by election by the Board of Directors of a member of the corporation.</p>
+      </div>
+
+      <div class="bylaw-article" id="article-7">
+        <h2>Article 7 &mdash; Duties of Officers</h2>
+        <p><strong>Section 7.01.</strong> President &amp; Vice President. The President, or in his/her absence, the Vice President, shall preside at all meetings and be a liaison with the Executive Board and members of the corporation, and represent the corporation at events as needed.</p>
+        <p><strong>Section 7.02.</strong> Secretary. The Secretary shall keep the minutes of all regular and special meeting of the corporation and of all meetings of the members, the officers and the Board of Directors, issue calls for meetings, and perform any other duties as may be assigned by the President.</p>
+        <p><strong>Section 7.03.</strong> Treasurer. The Treasurer shall collect all membership dues, fees, and assessments, shall receive all monies earned by the corporation, donated to the corporation, or otherwise given to the corporation that have been accepted by the Board of Directors, and shall deposit all such monies in the name of the corporation in a financial institution approved by the Board of Directors. All expenditures over one hundred fifty and 00/100 dollars ($150.00) must be approved by the Board of Directors. Once a year, at the discretion of the President, an auditing committee may be appointed, consisting of three (3) members, excluding Officers and Directors, who shall audit the Treasurer's book and the Secretary's minutes and render their report at a monthly Board meeting. If requested, this audit would typically occur during June, in time for the June Board Meeting.</p>
+      </div>
+
+      <div class="bylaw-article" id="article-8">
+        <h2>Article 8 &mdash; Board of Directors</h2>
+        <p><strong>Section 8.01.</strong> General Powers. The corporation's powers shall be exercised by or under the authority of, and its business and affairs shall be managed under the direction of, its Board of Directors, subject to any limitation set forth in the articles of incorporation.</p>
+        <p><strong>Section 8.02.</strong> Number, Tenure and Qualifications. The number of directors of the corporation shall be a minimum of six (6) and a maximum of fifteen (15). Each Director shall hold office until the next annual members meeting and until his or her successor shall have been elected by the members or until his or her prior death, resignation or removal. A Director may be removed from office by a vote of the members taken at any members' meeting called for that purpose, provided that a quorum is present. For purposes of removal, a quorum shall consist of at least one half of the corporation's members. A director may resign at any time by delivering his or her written resignation that complies with the provisions of Chapter 180 of the Wisconsin Statutes to the Board of Directors, the chairperson of the Board of Directors, or the corporation. Directors must be members of the corporation, but need not be residents of the State of Wisconsin.</p>
+        <p><strong>Section 8.03.</strong> The Board of Directors, by a 3/4 vote of the total membership thereof, shall have the power to veto any resolution passed by the membership, provided any such action shall be taken not less than 30 days after passage of any resolution by the membership.</p>
+      </div>
+
+      <div class="bylaw-article" id="article-9">
+        <h2>Article 9 &mdash; Reimbursement</h2>
+        <p><strong>Section 9.01.</strong> No Officer or Director of the corporation shall be paid any salary while in office.</p>
+      </div>
+
+      <div class="bylaw-article" id="article-10">
+        <h2>Article 10 &mdash; Membership, Dues, Discharge</h2>
+        <p><strong>Section 10.01.</strong> Membership. Membership shall be open to anyone regardless of race, color or creed who is eighteen (18) years of age or over, or a high school graduate who wishes to participate and share the corporations responsibilities.</p>
+        <p><strong>Section 10.02.</strong> Dues. Unless specifically enacted by the Board of Directors, no dues will be required.</p>
+        <p><strong>Section 10.03.</strong> Discharge. Misconduct or neglect of duties as prescribed by the Executive Board or the Bylaws shall be cause for expulsion from membership in the corporation.</p>
+        <p style="margin-top: 24px; font-size: 12px; color: var(--muted);"><strong>This instrument was drafted by:</strong><br>Arndt, Buswell Thorn, S.C.<br>101 W. Oak Street, Sparta, WI 54656<br>Phone: 608-269-1200</p>
+      </div>
+
+      <!-- END BY LAWS -->
+
+    </div>
+  </div>
+</div><!-- end #page-bylaws -->
+
+
+<!-- ============================================================
+  PAGE: CONTACT
+  ============================================================ -->
+<div id="page-contact" class="page">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-label">BSF &mdash; Contact</div>
+      <h1>Contact Us</h1>
+      <p>Have a question about scholarships, the golf outing, or the foundation? We'd love to hear from you.</p>
+    </div>
+  </div>
+  <div class="rule-banner"></div>
+  <div class="page-content">
+    <div class="contact-grid">
+      <div>
+        <h2>Send us a message</h2>
+        <p style="margin-bottom:24px;">Fill out the form below and we'll get back to you as soon as possible.</p>
+        <form class="contact-form" id="contact-form" onsubmit="submitForm(event)">
+          <label for="cf-name">Your name</label>
+          <input type="text" id="cf-name" placeholder="Jane Smith" required>
+          <label for="cf-email">Email address</label>
+          <input type="email" id="cf-email" placeholder="jane@example.com" required>
+          <label for="cf-subject">Subject</label>
+          <input type="text" id="cf-subject" placeholder="Scholarship question">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" placeholder="Your message..." required></textarea>
+          <button type="submit" class="btn-black">Send message</button>
+        </form>
+      </div>
+      <div class="contact-info-block">
+        <div class="contact-info-item">
+          <h4>Email</h4>
+          <p><a href="#" id="contact-email-link" style="color:var(--red);">Click to email us</a></p>
+        </div>
+        <div class="contact-info-item">
+          <h4>Follow us</h4>
+          <p><a href="#" onclick="openFB(); return false;" style="color:var(--red);">Facebook &rarr;</a></p>
+        </div>
+        <div class="contact-info-item">
+          <h4>Donate</h4>
+          <p>Support BSF students by making a donation through PayPal.</p>
+          <p style="margin-top:12px;"><a onclick="openPayPal()" class="btn-red" style="display:inline-block;cursor:pointer;">Donate now</a></p>
+        </div>
+
+        <!-- ✏️ UPDATE: Mailing address if it changes -->
+        <div class="contact-info-item">
+          <h4>Mailing address</h4>
+          <p>Bangor Scholarship Foundation<br>PO Box 123<br>Bangor, WI 54614</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div><!-- end #page-contact -->
+
+
+<!-- ============================================================
+  PAGE: DONATE
+  ============================================================ -->
+<div id="page-donate" class="page">
+  <div class="donate-hero">
+    <div class="donate-hero-inner">
+      <h1>Support Bangor students</h1>
+      <p>Your donation goes directly to scholarships for students from Bangor pursuing higher education. 100% of every dollar raised is awarded back to our community.</p>
+    </div>
+  </div>
+  <div class="rule-banner"></div>
+  <div class="page-content">
+    <h2>Make a donation</h2>
+    <p style="margin-bottom:32px;">Click any option below to donate via PayPal. Every contribution makes a difference.</p>
+    <div class="donate-options">
+      <div class="donate-option">
+        <div class="donate-amount">$25</div>
+        <h3>Supporter</h3>
+        <p>Help cover application and administrative costs so students can focus on their studies.</p>
+        <a onclick="openPayPal()" class="btn-red" style="margin-top:auto;cursor:pointer;">Donate $25</a>
+      </div>
+      <div class="donate-option">
+        <div class="donate-amount">$100</div>
+        <h3>Contributor</h3>
+        <p>A meaningful gift that goes directly toward the annual scholarship fund for Bangor students.</p>
+        <a onclick="openPayPal()" class="btn-red" style="margin-top:auto;cursor:pointer;">Donate $100</a>
+      </div>
+      <div class="donate-option">
+        <div class="donate-amount">Any</div>
+        <h3>Custom amount</h3>
+        <p>Give any amount you choose. Every dollar is appreciated by our scholarship recipients.</p>
+        <a onclick="openPayPal()" class="btn-black" style="margin-top:auto;cursor:pointer;">Donate via PayPal</a>
+      </div>
+    </div>
+  </div>
+</div><!-- end #page-donate -->
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-about">
+      <div class="footer-brand-row">
+        <div class="footer-mark"><span>BSF</span></div>
+        <span class="footer-brand-name">Bangor Scholarship Foundation</span>
+      </div>
+      <p>Raising funds and awarding scholarships to Bangor students since 1996. A volunteer-run nonprofit proudly serving Bangor, Wisconsin.</p>
+    </div>
+    <div>
+      <h4>Navigate</h4>
+      <nav>
+        <a onclick="showPage('application')">Application</a>
+        <a onclick="openPayPal()">Donate</a>
+        <a onclick="showPage('golf')">Golf Outing</a>
+        <a onclick="showPage('recipients')">Past Recipients</a>
+        <a onclick="showPage('contact')">Contact Us</a>
+      </nav>
+    </div>
+    <div>
+      <h4>Organization</h4>
+      <nav>
+        <a onclick="showPage('about')">What is BSF?</a>
+        <a onclick="showPage('bylaws')">By Laws</a>
+        <a onclick="showPage('home')">Newsletters</a>
+        <a onclick="openFB()">Facebook</a>
+      </nav>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; <span id="footer-year"></span> Bangor Scholarship Foundation, Inc.</span>
+    <span>Bangor, Wisconsin</span>
+  </div>
+</footer>
+
+
+<script>
+// ── Page navigation ──────────────────────────────────────────
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  var el = document.getElementById('page-' + id);
+  if (el) {
+    el.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  // Update active nav link
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  // Close mobile nav
+  document.getElementById('main-nav').classList.remove('open');
+  // Trigger fade-ins
+  setTimeout(initFadeIns, 50);
+}
+
+// ── External links ───────────────────────────────────────────
+function openPayPal() { window.open(PAYPAL_URL, '_blank'); }
+function openFB()     { window.open(FB_URL, '_blank'); }
+function openEmail()  { window.location.href = 'mailto:' + CONTACT_EMAIL; }
+
+// ── Set email links ──────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  var emailEls = document.querySelectorAll('#contact-email-link, #contact-email-golf');
+  emailEls.forEach(function(el) {
+    el.href = 'mailto:' + CONTACT_EMAIL;
+    el.textContent = CONTACT_EMAIL;
+  });
+  initFadeIns();
+});
+
+// ── Mobile nav ───────────────────────────────────────────────
+function toggleMobileNav() {
+  var nav = document.getElementById('main-nav');
+  nav.classList.toggle('open');
+}
+
+// ── Contact form (opens email client) ────────────────────────
+function submitForm(e) {
+  e.preventDefault();
+  var name    = document.getElementById('cf-name').value;
+  var subject = document.getElementById('cf-subject').value || 'BSF Website Inquiry';
+  var message = document.getElementById('cf-message').value;
+  var body    = 'Name: ' + name + '\n\n' + message;
+  window.location.href = 'mailto:' + CONTACT_EMAIL +
+    '?subject=' + encodeURIComponent(subject) +
+    '&body=' + encodeURIComponent(body);
+}
+
+// ── Scroll fade-ins ──────────────────────────────────────────
+function initFadeIns() {
+  if (!('IntersectionObserver' in window)) return;
+  var els = document.querySelectorAll('.page.active .fade-in:not(.visible)');
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(function(el) { obs.observe(el); });
+}
+</script>
+
+</body>
+</html>
