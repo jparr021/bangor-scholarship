@@ -18,7 +18,7 @@ Single-file static site (`index.html`) for the Bangor Scholarship Foundation (BS
 ## Yearly updates
 1. **Recipients**: add a new year heading + grid at the TOP of the recipients page (copy the newest year's block). Named scholarships go in the `recipient-detail` line. Then update the "Class of" spotlight on the home page (year, amount, names).
 2. **Newsletter**: the full letter text goes on the Newsletters page (copy a `<details class="nl-letter">` block to the top). Then add an `nl-row` at the top of the home page list (it shows the latest 5; remove the bottom one). PDFs are optional; put them in `newsletters/`.
-3. **Golf outing**: update the date, location, time and fee on the golf page, its sidebar, and the home page golf banner. The home banner also has a red calendar-style date block.
+3. **Golf outing**: update the date, location, time and fee on the golf page, its sidebar, and the home page golf banner. Red calendar-style date blocks (`golf-date`) appear in 3 places: the home banner, the golf page header and the golf page sidebar.
 4. **Application**: update the deadline (3 places: step 3, intro paragraph, sidebar). Put the new Word/PDF files in `application/` and update the links, plus the Google Doc link.
 5. **About / Donate**: update the scholarship amount, officers & board, and the "181 scholarships / $325,900" totals on the home page stats band, the Donate page and the About page.
 
