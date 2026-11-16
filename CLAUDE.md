@@ -1,13 +1,13 @@
 # Bangor Scholarship Foundation website
 
-Single-file static site (`index.html`) for the Bangor Scholarship Foundation (BSF), Bangor, WI. Replaces the old WordPress site at bangorscholarship.com. Deployed to Vercel from the GitHub repo `jparr021/bangor-scholarship` (branch `main`); no build step.
+Single-file static site (`index.html`) for the Bangor Scholarship Foundation (BSF), Bangor, WI. Live at https://www.bangorscholarshipfoundation.org (the bare .org and the old WordPress domain bangorscholarship.com redirect there). Domain DNS is on Vercel, including the ImprovMX mail records that forward the @bangorscholarshipfoundation.org addresses; keep those when editing DNS. Deployed to Vercel from the GitHub repo `jparr021/bangor-scholarship` (branch `main`); no build step.
 
 ## How the site works
 - Everything (HTML, CSS, JS) lives in `index.html`. Downloadable files live in `application/` (scholarship application) and `newsletters/` (older newsletter PDFs).
 - Pages are `<div id="page-NAME" class="page">` blocks. Pages: home, application, golf, recipients, about, bylaws, newsletters, contact, donate.
 - Each page has its own shareable link: `#golf`, `#application`, etc. Link to a page with a plain `<a href="#golf">`. A second part jumps to an element on that page and opens it if it's a `<details>`: `#bylaws/article-3`, `#newsletters/nl-2023`, `#about/officers`. `route()` in the script at the bottom handles this; `showPage('NAME')` still works too.
 - Site-wide values (Facebook URL, PayPal URL, contact email) are JS variables near the top of `<body>`: `FB_URL`, `PAYPAL_URL`, `CONTACT_EMAIL`. Links that use them are written `<a href="#" data-link="paypal|facebook|email">`; the script fills in the real address.
-- Search/sharing tags (description, Facebook preview) are in `<head>` and use the live address `https://bangor-scholarship.vercel.app`. Change them if the domain moves. The Facebook preview image is `images/share.png` (1200×630); icons are `favicon.svg` and `apple-touch-icon.png`.
+- Search/sharing tags (description, Facebook preview) are in `<head>` and use the live address `https://www.bangorscholarshipfoundation.org`. Change them if the domain moves. The Facebook preview image is `images/share.png` (1200×630); icons are `favicon.svg` and `apple-touch-icon.png`.
 - Every link must have an `href` (keyboard and screen-reader access). Don't use `<a onclick>` without one.
 - Edit spots are marked with `✏️` comments. Search for `✏️` to find them.
 - Design: red `#C8102E`, black, white (school colors). Fonts: Playfair Display + Barlow.
@@ -26,7 +26,7 @@ Single-file static site (`index.html`) for the Bangor Scholarship Foundation (BS
 - Gerald and Marcella Horman Scholarship amount varies (historically about $2,500), so the About page lists it without one on purpose.
 - 2027 golf entry fee is TBD; the golf page, sidebar and home banner say "to be announced". Fill it in when set.
 - The 2020 newsletter PDF on the old site was a dead link; the 2020 letter is on the site as text only. 2022–2025 were never PDFs.
-- Point the bangorscholarship.com domain at Vercel once the board is ready to retire the WordPress site.
+- Facebook may show an old preview of the site until someone runs the address through Facebook's Sharing Debugger and clicks "Scrape Again".
 
 ## Deploying
 Push to GitHub; Vercel redeploys automatically. To preview locally, open `index.html` in a browser, or run `python3 -m http.server` in this folder and open http://localhost:8000. (In the Claude app's preview pane, local files open as a static copy that drops the `#page` part of the address, so test page links over the local server.)
