@@ -140,6 +140,8 @@ img { display: block; max-width: 100%; }
 .page-content p { font-size: 14px; color: var(--mid); line-height: 1.85; margin-bottom: 16px; font-weight: 300; }
 .page-content a { color: var(--red); }
 .page-content a:hover { text-decoration: underline; }
+.page-content a.btn-red, .page-content a.btn-black { color: #fff; text-decoration: none; }
+.page-content a.btn-outline-dark { color: var(--black); text-decoration: none; }
 .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 64px; align-items: start; }
 .content-sidebar { background: var(--white); border: 1px solid var(--rule); padding: 28px; }
 .content-sidebar h3 { font-family: var(--serif); font-size: 18px; font-weight: 400; color: var(--black); margin-bottom: 14px; margin-top: 0; }
@@ -205,6 +207,32 @@ img { display: block; max-width: 100%; }
 .bylaw-article h2 { font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--black); margin-bottom: 16px; }
 .bylaw-article p { font-size: 14px; color: var(--mid); line-height: 1.85; font-weight: 300; margin-bottom: 12px; }
 
+/* ── Officers & board ── */
+.people-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin: 8px 0 8px; }
+.people-grid h4 { font-size: 11px; font-weight: 600; color: var(--red); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+.people-list { list-style: none; border-top: 1px solid var(--rule); }
+.people-list li { font-size: 14px; color: var(--black); font-weight: 400; padding: 9px 0; border-bottom: 1px solid var(--rule); }
+.people-list li span { display: block; font-size: 10px; font-weight: 600; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* ── Newsletters page ── */
+.nl-letters { max-width: 780px; border-top: 1px solid var(--rule); }
+.nl-letter { border-bottom: 1px solid var(--rule); scroll-margin-top: 90px; }
+.nl-letter summary { list-style: none; cursor: pointer; display: flex; align-items: baseline; gap: 14px; padding: 18px 0; }
+.nl-letter summary::-webkit-details-marker { display: none; }
+.nl-letter summary::after { content: '+'; margin-left: auto; font-size: 20px; color: var(--red); line-height: 1; }
+.nl-letter[open] summary::after { content: '\2212'; }
+.nl-letter summary .nl-year { font-size: 20px; }
+.nl-letter summary .nl-name { font-size: 15px; }
+.nl-letter-body { padding: 0 0 24px; }
+.nl-letter-body .nl-sign { margin-top: 8px; }
+.nl-pdf { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+.nl-all { display: inline-block; margin-top: 16px; font-size: 11px; font-weight: 600; color: var(--mid); letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; }
+.nl-all:hover { color: var(--red); }
+
+/* ── Donate: other ways ── */
+.donate-ways { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.donate-ways h4 { font-size: 11px; font-weight: 600; color: var(--red); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+
 /* ── Footer ── */
 .site-footer { background: var(--black); }
 .footer-main { max-width: 1140px; margin: 0 auto; padding: 52px 48px 40px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; border-bottom: 1px solid #222; }
@@ -234,7 +262,7 @@ img { display: block; max-width: 100%; }
   .hero-aside { display: none; }
   .hero-left { padding: 40px 0; border-right: none; }
   .hero h1 { font-size: 38px; }
-  .paths-grid, .lower-section, .content-grid, .contact-grid, .donate-options, .footer-main { grid-template-columns: 1fr; }
+  .paths-grid, .lower-section, .content-grid, .contact-grid, .donate-options, .donate-ways, .people-grid, .footer-main { grid-template-columns: 1fr; }
   .golf-inner, .golf-page-inner { grid-template-columns: 1fr; padding-top: 40px; padding-bottom: 40px; }
   .section-header { grid-template-columns: 1fr; }
   .nav-links { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--rule); padding: 12px 0; }
@@ -251,13 +279,13 @@ img { display: block; max-width: 100%; }
   ============================================================ -->
 
 <!-- ✏️ UPDATE: Facebook page URL -->
-<script>var FB_URL = "https://www.facebook.com/YourPageHere";</script>
+<script>var FB_URL = "https://www.facebook.com/BangorScholarshipFoundation";</script>
 
 <!-- ✏️ UPDATE: PayPal donate button URL -->
-<script>var PAYPAL_URL = "https://www.paypal.com/donate/?hosted_button_id=YOURCODE";</script>
+<script>var PAYPAL_URL = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PF9ZJNFMFAWZ4&source=url";</script>
 
 <!-- ✏️ UPDATE: Contact email address -->
-<script>var CONTACT_EMAIL = "info@bangorscholarship.com";</script>
+<script>var CONTACT_EMAIL = "president@bangorscholarshipfoundation.org";</script>
 
 
 <!-- TOP BAR -->
@@ -284,7 +312,7 @@ img { display: block; max-width: 100%; }
       <a onclick="showPage('about')">About BSF</a>
       <a onclick="showPage('bylaws')">By Laws</a>
       <a onclick="showPage('contact')">Contact</a>
-      <a onclick="openPayPal()" class="donate-btn">Donate</a>
+      <a onclick="showPage('donate')" class="donate-btn">Donate</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" onclick="toggleMobileNav()" aria-label="Toggle menu">
       <span></span><span></span><span></span>
@@ -349,7 +377,7 @@ img { display: block; max-width: 100%; }
           <div class="path-index">02</div>
           <h3>Donate to BSF</h3>
           <p>Your gift goes directly to scholarships for Bangor students. Contribute any amount securely through PayPal &mdash; it makes a real difference.</p>
-          <a onclick="openPayPal()" class="path-arrow">Donate now</a>
+          <a onclick="showPage('donate')" class="path-arrow">Ways to give</a>
         </div>
         <div class="path-card fade-in">
           <div class="path-index">03</div>
@@ -365,7 +393,7 @@ img { display: block; max-width: 100%; }
   <section class="golf-section">
     <div class="golf-inner">
       <div>
-        <div class="golf-label">Annual Fundraiser &mdash; June 27, 2026</div>
+        <div class="golf-label">Annual Fundraiser &mdash; July 3, 2027</div>
 
         <!-- ✏️ UPDATE: Golf outing headline if name changes -->
         <h2>Myrna &amp; Casey Davis Memorial Golf Outing</h2>
@@ -400,18 +428,28 @@ img { display: block; max-width: 100%; }
         <div class="newsletter-list">
 
           <!-- ============================================================
-            ✏️  ADD NEW NEWSLETTERS HERE
-            Copy one <div class="nl-row">...</div> block and update the
-            year and the href to point to your PDF file.
-            Most recent year should be at the top.
+            ✏️  ADD NEW NEWSLETTERS HERE (home page shows the latest 5)
+            1. Add the full letter at the top of the Newsletters page
+               (search for "ADD NEW NEWSLETTER LETTERS HERE").
+            2. Copy one <div class="nl-row">...</div> block below, put it
+               at the top, change the year in both places, and delete
+               the bottom row so five remain.
             ============================================================ -->
+
+          <div class="nl-row">
+            <div class="nl-row-left">
+              <span class="nl-year">2025</span>
+              <span class="nl-name">Annual Newsletter</span>
+            </div>
+            <a onclick="openNewsletter(2025)" class="nl-read" style="cursor:pointer;">Read &rarr;</a>
+          </div>
 
           <div class="nl-row">
             <div class="nl-row-left">
               <span class="nl-year">2024</span>
               <span class="nl-name">Annual Newsletter</span>
             </div>
-            <a href="newsletters/2024-newsletter.pdf" target="_blank" class="nl-read">Read &rarr;</a>
+            <a onclick="openNewsletter(2024)" class="nl-read" style="cursor:pointer;">Read &rarr;</a>
           </div>
 
           <div class="nl-row">
@@ -419,7 +457,7 @@ img { display: block; max-width: 100%; }
               <span class="nl-year">2023</span>
               <span class="nl-name">Annual Newsletter</span>
             </div>
-            <a href="newsletters/2023-newsletter.pdf" target="_blank" class="nl-read">Read &rarr;</a>
+            <a onclick="openNewsletter(2023)" class="nl-read" style="cursor:pointer;">Read &rarr;</a>
           </div>
 
           <div class="nl-row">
@@ -427,7 +465,7 @@ img { display: block; max-width: 100%; }
               <span class="nl-year">2022</span>
               <span class="nl-name">Annual Newsletter</span>
             </div>
-            <a href="newsletters/2022-newsletter.pdf" target="_blank" class="nl-read">Read &rarr;</a>
+            <a onclick="openNewsletter(2022)" class="nl-read" style="cursor:pointer;">Read &rarr;</a>
           </div>
 
           <div class="nl-row">
@@ -435,20 +473,13 @@ img { display: block; max-width: 100%; }
               <span class="nl-year">2021</span>
               <span class="nl-name">Annual Newsletter</span>
             </div>
-            <a href="newsletters/2021-newsletter.pdf" target="_blank" class="nl-read">Read &rarr;</a>
-          </div>
-
-          <div class="nl-row">
-            <div class="nl-row-left">
-              <span class="nl-year">2020</span>
-              <span class="nl-name">Annual Newsletter</span>
-            </div>
-            <a href="newsletters/2020-newsletter.pdf" target="_blank" class="nl-read">Read &rarr;</a>
+            <a onclick="openNewsletter(2021)" class="nl-read" style="cursor:pointer;">Read &rarr;</a>
           </div>
 
           <!-- END NEWSLETTERS -->
 
         </div>
+        <a onclick="showPage('newsletters')" class="nl-all">All newsletters (2016&ndash;present) &rarr;</a>
       </div>
     </div>
   </div>
@@ -513,8 +544,8 @@ img { display: block; max-width: 100%; }
         <!-- ✏️ UPDATE: Application download links each year -->
         <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px;">
           <a href="https://docs.google.com/document/d/1BPG1nkFumGbAgo_WLfSp56IRRIekBoAKa5xCtE0mHB4/edit?usp=sharing" class="btn-black" target="_blank" rel="noopener">Google Doc</a>
-          <a href="http://bangorscholarship.com/wp-content/uploads/2025/01/BSF-Scholarship-Application_2026.docx" class="btn-outline-dark" target="_blank" rel="noopener">Word Document</a>
-          <a href="http://bangorscholarship.com/wp-content/uploads/2025/12/BSF-Scholarship-Application_2026.pdf" class="btn-outline-dark" target="_blank" rel="noopener">PDF</a>
+          <a href="application/BSF-Scholarship-Application_2026.docx" class="btn-outline-dark" download>Word Document</a>
+          <a href="application/BSF-Scholarship-Application_2026.pdf" class="btn-outline-dark" target="_blank" rel="noopener">PDF</a>
         </div>
 
       </div>
@@ -543,8 +574,8 @@ img { display: block; max-width: 100%; }
         <h1 style="font-family:var(--serif);font-size:42px;font-weight:400;color:#fff;line-height:1.15;margin-bottom:12px;">Myrna &amp; Casey Davis<br>Memorial Golf Outing</h1>
         <p style="font-size:14px;color:#888;font-weight:300;line-height:1.75;">All proceeds go directly to scholarships for Bangor students.</p>
       </div>
-      <!-- ✏️ UPDATE: Registration URL when available -->
-      <a href="#" onclick="alert('Registration link coming soon!'); return false;" class="btn-red">Register now</a>
+      <!-- ✏️ UPDATE: Registration link. Emails the president by default; swap the href for an online form if you get one. -->
+      <a href="mailto:president@bangorscholarshipfoundation.org?subject=Golf%20Outing%20Registration" class="btn-red">Email to register</a>
     </div>
   </div>
   <div class="rule-banner"></div>
@@ -554,17 +585,17 @@ img { display: block; max-width: 100%; }
         <h2>About the event</h2>
 
         <!-- ✏️ UPDATE: Golf outing description each year -->
-        <p>The tournament in 2026 will be held on June 27th beginning at 9 a.m. at Fox Hollow Golf Course in Barre Mills. It will be a "shot gun" start meaning that all golfers start at once at various holes — which also means everyone finishes at the same time and can meet up and socialize after.</p>
-        <p>All proceeds go directly toward scholarships for Bangor students. Pay when you arrive — no pre-registration required.</p>
+        <p>The tournament in 2027 will be held on Saturday, July 3rd beginning at 9 a.m. at Fox Hollow Golf Course in Barre Mills. It will be a "shot gun" start meaning that all golfers start at once at various holes — which also means everyone finishes at the same time and can meet up and socialize after.</p>
+        <p>All proceeds go directly toward scholarships for Bangor students. Register early &mdash; spots fill up. Payment is made when you arrive.</p>
 
-        <h3>2026 Tournament Details</h3>
+        <h3>2027 Tournament Details</h3>
 
         <div style="margin-top:16px;display:flex;flex-direction:column;gap:0;">
 
           <!-- ✏️ UPDATE: Golf outing details each year -->
           <div style="display:grid;grid-template-columns:160px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--rule);">
             <span style="font-size:11px;font-weight:600;color:var(--red);letter-spacing:0.1em;text-transform:uppercase;">Date</span>
-            <span style="font-size:14px;color:var(--mid);font-weight:300;">Saturday, June 27, 2026</span>
+            <span style="font-size:14px;color:var(--mid);font-weight:300;">Saturday, July 3, 2027</span>
           </div>
           <div style="display:grid;grid-template-columns:160px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--rule);">
             <span style="font-size:11px;font-weight:600;color:var(--red);letter-spacing:0.1em;text-transform:uppercase;">Location</span>
@@ -584,17 +615,17 @@ img { display: block; max-width: 100%; }
           </div>
           <div style="display:grid;grid-template-columns:160px 1fr;gap:12px;padding:14px 0;">
             <span style="font-size:11px;font-weight:600;color:var(--red);letter-spacing:0.1em;text-transform:uppercase;">Payment</span>
-            <span style="font-size:14px;color:var(--mid);font-weight:300;">Pay when you arrive — no pre-registration required</span>
+            <span style="font-size:14px;color:var(--mid);font-weight:300;">Register ahead (spots fill up); pay when you arrive</span>
           </div>
           <!-- END Golf outing details -->
 
         </div>
-        <p style="margin-top:32px;font-size:16px;font-weight:600;color:var(--black);">See you on June 27!</p>
+        <p style="margin-top:32px;font-size:16px;font-weight:600;color:var(--black);">See you on July 3!</p>
       </div>
       <aside>
         <div class="content-sidebar">
-          <h3>2026 Details</h3>
-          <p><strong>Date:</strong><br>Saturday, June 27, 2026</p>
+          <h3>2027 Details</h3>
+          <p><strong>Date:</strong><br>Saturday, July 3, 2027</p>
           <p><strong>Location:</strong><br>Fox Hollow Golf Course<br>Barre Mills, WI</p>
           <p><strong>Start time:</strong><br>9:00 AM shotgun start</p>
           <p><strong>Entry fee:</strong><br>$60 per golfer<br><em style="font-size:12px;">Includes green fees, cart &amp; entry</em></p>
@@ -1580,12 +1611,43 @@ img { display: block; max-width: 100%; }
         <h3 id="officers">Officers &amp; board</h3>
 
         <!-- ✏️ UPDATE: Officers and board members as they change -->
-        <p>BSF is governed by a volunteer board of directors. For current officer information, please <a onclick="showPage('contact')" style="cursor:pointer;">contact us</a>.</p>
+        <p>BSF is run entirely by volunteers. No officer or director is paid, and there is no professional staff.</p>
+        <div class="people-grid">
+          <div>
+            <h4>Officers</h4>
+            <ul class="people-list">
+              <li><span>President</span>Kelly Peterson</li>
+              <li><span>Vice President</span>Kathy Schmidt</li>
+              <li><span>Secretary</span>Julie Meyers</li>
+              <li><span>Treasurer</span>Jeff Parr</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Board of directors</h4>
+            <ul class="people-list">
+              <li>Paul Amborn</li>
+              <li>Dan Arndt</li>
+              <li>Jill Grennan</li>
+              <li>Kari Johnson</li>
+              <li>Mike Johnson</li>
+              <li>Katie Jones</li>
+              <li>Sarah Langrehr</li>
+              <li>Staci Tenner</li>
+              <li>Jeri Wittmershaus</li>
+            </ul>
+          </div>
+        </div>
 
-        <h3>Scholarship amount</h3>
+        <h3 id="scholarship-amount">Scholarship amount</h3>
 
         <!-- ✏️ UPDATE: Scholarship amount if it changes -->
-        <p>Contact us for details on the current scholarship award amount.</p>
+        <p>In 2025, the Bangor Scholarship Foundation awarded six <strong>$2,800</strong> scholarships. Our goal is to keep increasing the amount as education costs continue to rise. BSF is funded entirely by donations from alumni and other generous supporters.</p>
+        <p>To date, BSF has given out more than 150 scholarships totaling $237,900 to students in the Bangor School District.</p>
+
+        <h3>Named scholarships</h3>
+        <p><strong>Dorothy Wolf Memorial Scholarship.</strong> Created by the family of Dorothy Wolf in 2021. A $1,000 scholarship awarded to the 7th-ranked applicant.</p>
+        <p><strong>Dave and Jana Langrehr Construction Scholarship.</strong> A $1,000 scholarship for a student entering post-high school education in a construction field.</p>
+        <p><strong>Gerald and Marcella (Meyer) Horman Scholarship.</strong> Created by Gerald and Marcella Horman in 2021.</p>
 
       </div>
       <aside>
@@ -1594,7 +1656,7 @@ img { display: block; max-width: 100%; }
           <p><a onclick="showPage('application')" style="color:var(--red);cursor:pointer;">Apply for a scholarship &rarr;</a></p>
           <p><a onclick="showPage('golf')" style="color:var(--red);cursor:pointer;">Golf outing &rarr;</a></p>
           <p><a onclick="showPage('bylaws')" style="color:var(--red);cursor:pointer;">Read our by laws &rarr;</a></p>
-          <p><a onclick="openPayPal()" style="color:var(--red);cursor:pointer;">Donate &rarr;</a></p>
+          <p><a onclick="showPage('donate')" style="color:var(--red);cursor:pointer;">Donate &rarr;</a></p>
         </div>
       </aside>
     </div>
@@ -1696,6 +1758,158 @@ img { display: block; max-width: 100%; }
 
 
 <!-- ============================================================
+  PAGE: NEWSLETTERS
+  ============================================================ -->
+<div id="page-newsletters" class="page">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-label">BSF &mdash; News</div>
+      <h1>Annual Newsletters</h1>
+      <p>Each spring the foundation's president writes to alumni, friends and supporters with that year's scholarship recipients and golf outing news.</p>
+    </div>
+  </div>
+  <div class="rule-banner"></div>
+  <div class="page-content">
+    <div class="nl-letters">
+
+      <!-- ============================================================
+        ✏️  ADD NEW NEWSLETTER LETTERS HERE
+        Copy one <details class="nl-letter" id="nl-YEAR"> block, put it at
+        the top, and change the id, year, date and text. If you also have
+        a PDF, put it in newsletters/ and add an nl-pdf link like 2021's.
+        ============================================================ -->
+
+      <details class="nl-letter" id="nl-2025">
+        <summary><span class="nl-year">2025</span><span class="nl-name">Annual Newsletter &mdash; May 12, 2025</span></summary>
+        <div class="nl-letter-body">
+          <p>Dear Alumni, Friends, and Supporters,</p>
+          <p>The Bangor Scholarship Foundation is extremely pleased to report that, thanks to your generosity and efforts, we are able to award six $2800 scholarships in 2025. This year&rsquo;s outstanding group of recipients are: Aubrey Langrehr, Harrison Regan, Jacob Warsing, Bliss Knox, Alexa Heitkamp, and Anna Fronk. This year&rsquo;s recipient of the Dorothy Wolf Memorial Scholarship is Rylee Lyga. This year&rsquo;s recipient of the Dave and Jana Langrehr Scholarship is Brock Bores. In addition, this year&rsquo;s recipient of the Gerald and Marcella (Meyer) Horman Scholarship is Andrew Schaub. We congratulate them all and would like to thank all of the contributors for their generous donations!</p>
+          <p>On behalf of the Foundation, we want to thank you for your support of this local organization. As you know, the sole purpose of this organization is to provide financial assistance to Bangor School District graduates towards their academic careers of post high school education. Unlike other charitable organizations, the Bangor Scholarship Foundation does not have any professional staff, and our board is comprised entirely of volunteers. There is no overhead expense to operate this organization. All donations are deductible on your federal tax return and are extremely appreciated.</p>
+          <p>We would like to announce that this year&rsquo;s 25th Annual Myrna and Casey Davis Memorial Golf Outing is set for Saturday, June 28, 2025 and remind you to register early to ensure your reservation is received. Register online at our website or with the attached form. The cost this year is $60 per golfer with a shotgun start at 9 a.m. Greens fees and tournament entry will be included in one cost. We appreciate your contributions and look forward to seeing everyone at the tournament and social. Hope to see you there.</p>
+          <p class="nl-sign"><strong>Bangor Scholarship Foundation</strong><br><em>Kelly Peterson</em> &ndash; President</p>
+        </div>
+      </details>
+
+      <details class="nl-letter" id="nl-2024">
+        <summary><span class="nl-year">2024</span><span class="nl-name">Annual Newsletter &mdash; May 15, 2024</span></summary>
+        <div class="nl-letter-body">
+          <p>Dear Alumni, Friends, and Supporters,</p>
+          <p>The Bangor Scholarship Foundation is extremely pleased to report that, thanks to your generosity and efforts, we are able to award six $2800 scholarships in 2024. This year&rsquo;s outstanding group of recipients are: Samuel Crenshaw, Alycia Felch, Gladys Bores, Emily Warsing, Ella Hansen, and Nolan Langrehr. This year&rsquo;s recipient of the Dorothy Wolf Memorial Scholarship is Ella Janisch. This year&rsquo;s recipient of the Dave and Jana Langrehr Scholarship is Nolan Michek. In addition, this year&rsquo;s recipient of the Gerald and Marcella (Meyer) Horman Scholarship is Nolan Langrehr. We congratulate them all and would like to thank all of the contributors for their generous donations!</p>
+          <p>On behalf of the Foundation, we want to thank you for your support of this local organization. As you know, the sole purpose of this organization is to provide financial assistance to Bangor School District graduates towards their academic careers of post high school education. Unlike other charitable organizations, the Bangor Scholarship Foundation does not have any professional staff, and our board is comprised entirely of volunteers. There is no overhead expense to operate this organization. All donations are deductible on your federal tax return and are extremely appreciated.</p>
+          <p>We would like to announce that this year&rsquo;s 24th Annual Myrna and Casey Davis Memorial Golf Outing is set for Saturday, June 29, 2024 and remind you to register early to ensure your reservation is received. Register online at our website or with the attached form. The cost this year is $60 per golfer with a shotgun start at 9 a.m. Greens fees and tournament entry will be included in one cost. New this year, we will have a senior division. We appreciate your contributions and look forward to seeing everyone at the tournament and social. Hope to see you there.</p>
+          <p class="nl-sign"><strong>Bangor Scholarship Foundation</strong><br><em>Kelly Peterson</em> &ndash; President</p>
+        </div>
+      </details>
+
+      <details class="nl-letter" id="nl-2023">
+        <summary><span class="nl-year">2023</span><span class="nl-name">Annual Newsletter &mdash; May 8, 2023</span></summary>
+        <div class="nl-letter-body">
+          <p>Dear Alumni, Friends, and Supporters,</p>
+          <p>The Bangor Scholarship Foundation is extremely pleased to report that, thanks to your generosity and efforts, we are able to award seven $2800 scholarships in 2023. This year&rsquo;s outstanding group of recipients are: Kyleigh Groll, Sadie Kassera, Joeryn Freit, Gabrielle Schroeder, Alexander Adams, Benjamin Lockman, and Adrianna Massman. This year&rsquo;s recipient of the Dorothy Wolf Memorial Scholarship is Clayton Lyga. This year&rsquo;s recipient of the Dave and Jana Langrehr Scholarship is Lucas Hajek. In addition, this year&rsquo;s recipients of the Gerald and Marcella (Meyer) Horman Scholarship is Kyleigh Groll. We congratulate them all and would like to thank all of the contributors for their generous donations!</p>
+          <p>On behalf of the Foundation, we want to thank you for your support of this local organization. As you know, the sole purpose of this organization is to provide financial assistance to Bangor School District graduates towards their academic careers of post high school education.</p>
+          <p>Unlike other charitable organizations, the Bangor Scholarship Foundation does not have any professional staff, and our board is comprised entirely of volunteers. There is no overhead expense to operate this organization. All donations are deductible on your federal tax return and are extremely appreciated. We would like to announce that this year&rsquo;s 23rd Annual Myrna and Casey Davis Memorial Golf Outing is set for Saturday, July 1, 2023 and remind you to register early to ensure your reservation is received. Register online at our website or with the attached form. The cost this year is $60 per golfer with a shotgun start at 9 a.m. Greens fees and tournament entry will be included in one cost. We appreciate your contributions and look forward to seeing everyone at the tournament and social. Hope to see you there.</p>
+          <p class="nl-sign"><strong>Bangor Scholarship Foundation</strong><br><em>Kelly Peterson</em> &ndash; President</p>
+        </div>
+      </details>
+
+      <details class="nl-letter" id="nl-2022">
+        <summary><span class="nl-year">2022</span><span class="nl-name">Annual Newsletter &mdash; May 23, 2022</span></summary>
+        <div class="nl-letter-body">
+          <p>Dear Alumni, Friends, and Supporters,</p>
+          <p>The Bangor Scholarship Foundation is extremely pleased to report that, thanks to your generosity and efforts, we are able to award six $2800 scholarships in 2022. This year&rsquo;s outstanding group of recipients are: Madelyn England, Ashton Michek, Taylor Jacobson, Madeline Janisch, Treyton Peters and Aliyah Langrehr. This year&rsquo;s recipient of the Dorothy Wolf Memorial Scholarship is Madisyn Herman. In addition, this year&rsquo;s recipients of the Gerald and Marcella (Meyer) Horman Scholarship are Madisyn Herman and Samantha Nelson. We congratulate them all and would like to thank all of the contributors for their generous donations!</p>
+          <p>On behalf of the Foundation, we want to thank you for your support of this local organization. As you know, the sole purpose of this organization is to provide financial assistance to Bangor School District graduates towards their academic careers of post high school education.</p>
+          <p>Unlike other charitable organizations, the Bangor Scholarship Foundation does not have any professional staff, and our board is comprised entirely of volunteers. There is no overhead expense to operate this organization. All donations are deductible on your federal tax return and are extremely appreciated. We would like to announce that this year&rsquo;s 22nd Annual Myrna and Casey Davis Memorial Golf Outing is set for Saturday, July 2, 2022 and remind you to register early to ensure your reservation is received. Register online at our website or with the attached form. The cost this year is $60 per golfer with a shotgun start at 9 a.m. Greens fees and tournament entry will be included in one cost. We appreciate your contributions and look forward to seeing everyone at the tournament and social. Hope to see you there.</p>
+          <p class="nl-sign"><strong>Bangor Scholarship Foundation</strong><br><em>Kathy Schmidt</em> &ndash; President</p>
+        </div>
+      </details>
+
+      <details class="nl-letter" id="nl-2021">
+        <summary><span class="nl-year">2021</span><span class="nl-name">Annual Newsletter &mdash; May 17, 2021</span></summary>
+        <div class="nl-letter-body">
+          <p>Dear Alumni, Friends, and Supporters,</p>
+          <p>The Bangor Scholarship Foundation is extremely pleased to report that thanks to your generosity and efforts we are able to award six $2400 scholarships. This year&rsquo;s outstanding group of recipients are: Karissa Adams, Dustin Heitkamp, Haley Jones, Megan Miedema, Clara Nicolai and Samuel Wittmershaus. This year, Dave and Jana Langrehr continue to fund their Construction Scholarship. This year&rsquo;s recipient of the Dave and Jana Langrehr Scholarship is Hayden Lyga. In addition, this year, we were fortunate enough to have two new scholarships to award. The family of Dorothy Wolf created a memorial scholarship in her honor. This year&rsquo;s recipient of the Dorothy Wolf Memorial Scholarship is Elizabeth Glandt. In addition, Gerald and Marcella (Meyer) Horman created a scholarship. This year&rsquo;s recipient of the Gerald and Marcella (Meyer) Horman Scholarship was Jadyn Larson. We congratulate them all and would like to thank all of the contributors for their generous donations!</p>
+          <p>On behalf of the Foundation, we want to thank you for your support of this local organization. As you know, the sole purpose of this organization is to provide financial assistance to Bangor School District graduates towards their academic careers of post high school education.</p>
+          <p>Unlike many other charitable organizations, the Bangor Scholarship Foundation does not have any professional staff, and our board is comprised entirely of volunteers. There is no overhead expense to operate this organization. All donations are deductible on your federal tax return and are extremely appreciated.</p>
+          <p>We would like to announce that this year&rsquo;s 21st Annual Myrna and Casey Davis Memorial Golf Outing is set for Saturday, July 3, 2021 and remind you to register early to ensure your reservation is received. Register online at our website or with the attached form. The cost this year is $60 per golfer with a shotgun start at 9 a.m. Greens fees and tournament entry will be included in one cost. We appreciate your contributions and look forward to seeing everyone at the tournament and social. Hope to see you there.</p>
+          <p class="nl-sign"><strong>Bangor Scholarship Foundation</strong><br><em>Kathy Schmidt</em> &ndash; President</p>
+          <p><a href="newsletters/2021-newsletter.pdf" target="_blank" rel="noopener" class="nl-pdf">Original letter (PDF) &rarr;</a></p>
+        </div>
+      </details>
+
+      <details class="nl-letter" id="nl-2020">
+        <summary><span class="nl-year">2020</span><span class="nl-name">Annual Newsletter</span></summary>
+        <div class="nl-letter-body">
+          <p>Dear Alumni, Friends, and Supporters,</p>
+          <p>The Bangor Scholarship Foundation is extremely pleased to report that thanks to your generosity and efforts we are able to award six $2400 scholarships. This year&rsquo;s outstanding group of recipients are: Jadrian Lor, Adam Streeton, Andrea Glandt, Frederick Glandt, Kaci Theurer and Karsen Kershner. This year, Bruce and Jerrilyn Brewer continued to fund their annual scholarship to a student who demonstrates excellence in academics and extracurricular activities. This year&rsquo;s recipient of the Bruce and Jerrilyn Brewer Scholarship is Cassidy Bores. In addition, Dave and Jana Langrehr continue to fund their Construction Scholarship. This year&rsquo;s recipients of the Dave and Jana Langrehr Scholarship are Jayden Nachtigal and Carter Horstman. We congratulate them all!</p>
+          <p>On behalf of the Foundation, we want to thank you for your support of this local organization. As you know, the sole purpose of this organization is to provide financial assistance to Bangor School District graduates towards their academic careers of post high school education.</p>
+          <p>Unlike many other charitable organizations, the Bangor Scholarship Foundation does not have any professional staff, and our board is comprised entirely of volunteers. There is no overhead expense to operate this organization. All donations are deductible on your federal tax return and are extremely appreciated.</p>
+          <p>We would like to announce that this year&rsquo;s 21st Annual Myrna and Casey Davis Memorial Golf Outing is set for Saturday, June 27, 2020 and remind you to register early to ensure your reservation is received. Register online at our website or with the attached form. The cost this year is $60 per golfer with a shotgun start at 9 a.m. Greens fees and tournament entry will be included in one cost. <strong>In the event we must postpone due to COVID-19, we have reserved Saturday August 22, 2020 as our alternative date.</strong> We appreciate your contributions and look forward to seeing everyone at the tournament and social. Hope to see you there.</p>
+          <p class="nl-sign"><strong>Bangor Scholarship Foundation</strong><br><em>Kathy Schmidt</em> &ndash; President</p>
+        </div>
+      </details>
+
+      <details class="nl-letter" id="nl-2019">
+        <summary><span class="nl-year">2019</span><span class="nl-name">Annual Newsletter</span></summary>
+        <div class="nl-letter-body">
+          <p>Dear Alumni, Friends, and Supporters,</p>
+          <p>The Bangor Scholarship Foundation is extremely pleased to report that thanks to your generosity and efforts we are able to <strong>award eight $2400 scholarships</strong>. This year&rsquo;s outstanding group of recipients are: Ashlie Lockington, Courtney Oesterle, Dylan Sprain, Cora Kostuch, Noah Friet, Kaitlyn Stratman, Josephine Hansen, and Kaitlyn Solberg. This year, Bruce and Jerrilyn Brewer announced they will fund an annual scholarship to a student who demonstrates excellence in academics and extracurricular activities. This year&rsquo;s recipient of the Bruce and Jerrilyn Brewer Scholarship is Ashlie Lockington. In addition, Dave and Jana Langrehr continue to fund their Construction Scholarship. This year&rsquo;s recipient of the Dave and Jana Langrehr Scholarship is Jaymeson Freit. We congratulate them all!</p>
+          <p>On behalf of the Foundation, we want to thank you for your support of this local organization. As you know, the sole purpose of this organization is to provide financial assistance to Bangor School District graduates towards their academic careers of post high school education. Your assistance helps these graduates achieve their future goals by continuing their education at the college level.</p>
+          <p>Unlike many other charitable organizations, the Bangor Scholarship Foundation does not have any professional staff, and our board is comprised entirely of volunteers. There is no overhead expense to operate this organization. All donations are deductible on your federal tax return and are extremely appreciated.</p>
+          <p>We would like to announce that this year&rsquo;s 20th Annual Myrna Davis Memorial Golf Outing is set for Saturday, June 29, 2019 and remind you to register early to ensure your reservation is received. Register online at our website or with the attached form. The cost this year is $60 per golfer with a shotgun start at 9 a.m. Greens fees and tournament entry will be included in one cost. We appreciate your contributions and look forward to seeing everyone at the tournament and social. Hope to see you there.</p>
+          <p class="nl-sign"><strong>Bangor Scholarship Foundation</strong><br><em>Kathy Schmidt</em> &ndash; President</p>
+          <p><a href="newsletters/2019-newsletter.pdf" target="_blank" rel="noopener" class="nl-pdf">Original letter (PDF) &rarr;</a></p>
+        </div>
+      </details>
+
+      <details class="nl-letter" id="nl-2018">
+        <summary><span class="nl-year">2018</span><span class="nl-name">Annual Newsletter</span></summary>
+        <div class="nl-letter-body">
+          <p>Dear Alumni, Friends, and Supporters,</p>
+          <p><strong>What a year to be a Bangor Cardinal. What a year to be a Bangor Cardinal Alumni and Supporter.</strong> Bangor High School achieved something that no other school has ever achieved in winning the State Boys Basketball Championship, State Girls Basketball Championship and State Football Championship all in the same year. This will forever be known as the Bangor Slam. The Class of 2018 will always be remembered as the class that accepted the ultimate challenges and achieved the ultimate pinnacle. Our selection committee found it impossible to narrow the scholarship recipients to six from this class. We unanimously decided in recognition of this class&rsquo;s extraordinary achievement that <strong>WE WOULD AWARD TEN $2,400 SCHOLARSHIPS</strong>. This is a financial challenge to this organization, but we feel that this group of Seniors earned the right to challenge us to achieve great things. This year&rsquo;s outstanding group of recipients are: Elizabeth Nicolai, Cade Amborn, Alea Fortier, Emma Wittmershaus, Colin Buchholz, Haylee Leonard, Drew Johnson, Sarah Hannan and Jaclynn Freit. This year we were fortunate to receive funds given in memory of Eugene Schaller and the Eugene Schaller Memorial Scholarship was awarded to Brynn Langrehr. In addition, Dave and Jana Langrehr have also funded a scholarship to a student going into a construction-related field. This year&rsquo;s recipient of the Dave and Jana Langrehr Construction Scholarship is Ethan Jacobson.</p>
+          <p>On behalf of the Foundation, we want to thank you for your past support and ask that you provide continued and if possible even increased support to help us meet this worthy challenge. We do not ask this lightly and this will not be a permanent adjustment. But we believe this year&rsquo;s class is truly worthy of us accepting this challenge. We thank you for your commitment, and once again WHAT A GREAT YEAR TO BE A CARDINAL.</p>
+          <p>We also want to invite you to participate in the annual Myrna Davis Golf Outing. As many of you know, this event is not only successful but is a great deal of fun. We look forward to seeing you again this year. The 19th Annual Myrna Davis Golf Outing will be on Saturday, June 30th. We remind you to register early online at our website or with the attached form. The cost this year is $60 per golfer with a shotgun start at 9:00 a.m. Greens Fees and tournament fees are included in the cost. We will again have our social gathering after the conclusion of the tournament. We hope to see you there.</p>
+          <p>The social will again be held immediately following the conclusion of the tournament, when awards will be presented and prizes raffled off. We appreciate your contributions and look forward to seeing everyone at the tournament and social. Hope to see you there.</p>
+          <p class="nl-sign"><strong>Bangor Scholarship Foundation</strong><br><em>Kathy Schmidt</em> &ndash; President</p>
+          <p><a href="newsletters/2018-newsletter.pdf" target="_blank" rel="noopener" class="nl-pdf">Original letter (PDF) &rarr;</a></p>
+        </div>
+      </details>
+
+      <details class="nl-letter" id="nl-2017">
+        <summary><span class="nl-year">2017</span><span class="nl-name">Annual Newsletter</span></summary>
+        <div class="nl-letter-body">
+          <p>Dear Alumni, Friends, and Supporters:</p>
+          <p>The Bangor Scholarship Foundation is extremely pleased to report that thanks to your generosity and efforts we are able to award six $2000 scholarships. This year&rsquo;s outstanding group of recipients are Haley Freybler, Hallie Horstman, Mikaela Jepson, Alex Matz, Breanna Mikshowsky, and Tristan Shawley. We congratulate them all!</p>
+          <p>On behalf of the Foundation, we want to thank you for your support of this important local organization. As you know, the sole purpose of this organization is to provide financial assistance to Bangor School District graduates towards their academic careers of post high school education. Your assistance helps these graduates achieve their future goals by continuing their education at the college level.</p>
+          <p>Unlike many other charitable organizations, the Bangor Scholarship Foundation does not have any professional staff, and our board is comprised entirely of volunteers. There is no overhead expense to operate this organization. All donations are deductible on your federal tax return and are extremely appreciated.</p>
+          <p>We would like to thank all of you for your past and continuing support. We would also like to thank all who participate in the Annual Myrna Davis Golf Outing and our many participating sponsors and donors. This event continues to be a success every year.</p>
+          <p>We would like to announce that this year&rsquo;s 18th Annual Myrna Davis Memorial Golf Outing is set for Saturday, July 1st 2017 and remind you to register early to ensure your reservation is received. Register online at our website or with the attached form. The cost this year is $60 per golfer with a shotgun start at 9 a.m. Greens Fees and tournament entry will be included in one cost.</p>
+          <p>The social will again be held immediately following the conclusion of the tournament, when awards will be presented and prizes raffled off. We appreciate your contributions and look forward to seeing everyone at the tournament and social. Hope to see you there.</p>
+          <p><a href="newsletters/2017-newsletter.pdf" target="_blank" rel="noopener" class="nl-pdf">Original letter (PDF) &rarr;</a></p>
+        </div>
+      </details>
+
+      <details class="nl-letter" id="nl-2016">
+        <summary><span class="nl-year">2016</span><span class="nl-name">Annual Newsletter</span></summary>
+        <div class="nl-letter-body">
+          <p>Dear Alumni, Friends, and Supporters:</p>
+          <p>The Bangor Scholarship Foundation is extremely pleased to report that thanks to your generosity and efforts we are able to award seven $2000 scholarships. This year&rsquo;s outstanding group of recipients are Katie Horstman, Samuel Johnson, Kellen Kravik, Seth Plenge, Jack Reader, Karlee Tart and Kassidy Wuensch. We congratulate them all!</p>
+          <p>On behalf of the Foundation, we want to thank you for your support of this important local organization. As you know, the sole purpose of this organization is to provide financial assistance to Bangor School District graduates towards their academic careers of post high school education. Your assistance helps these graduates achieve their future goals by continuing their education at the college level.</p>
+          <p>Unlike many other charitable organizations, the Bangor Scholarship Foundation does not have any professional staff, and our board is comprised entirely of volunteers. There is no overhead expense to operate this organization. All donations are deductible on your federal tax return and are extremely appreciated.</p>
+          <p>We would like to thank all of you for your past and continuing support. We would also like to thank all who participate in the Annual Myrna Davis Golf Outing and our many participating sponsors and donors. This event continues to be a success every year.</p>
+          <p>We would like to announce that this year&rsquo;s 16th Annual Myrna Davis Memorial Golf Outing is set for Saturday, July 2nd, 2016 and remind you to register early to ensure your reservation is received. Register online at our website or with the attached form. The cost this year is $60 per golfer with a shotgun start at 9 a.m. Greens Fees and tournament entry will be included in one cost.</p>
+          <p>The social will again be held immediately following the conclusion of the tournament, when awards will be presented and prizes raffled off. We appreciate your contributions and look forward to seeing everyone at the tournament and social. Hope to see you there.</p>
+          <p><a href="newsletters/2016-newsletter.pdf" target="_blank" rel="noopener" class="nl-pdf">Original letter (PDF) &rarr;</a></p>
+        </div>
+      </details>
+
+      <!-- END NEWSLETTER LETTERS -->
+
+    </div>
+  </div>
+</div><!-- end #page-newsletters -->
+
+
+<!-- ============================================================
   PAGE: CONTACT
   ============================================================ -->
 <div id="page-contact" class="page">
@@ -1727,7 +1941,8 @@ img { display: block; max-width: 100%; }
       <div class="contact-info-block">
         <div class="contact-info-item">
           <h4>Email</h4>
-          <p><a href="#" id="contact-email-link" style="color:var(--red);">Click to email us</a></p>
+          <p><a href="#" id="contact-email-link" style="color:var(--red);">Click to email us</a><br><span style="font-size:12px;color:var(--muted);">President &mdash; general &amp; scholarship questions</span></p>
+          <p style="margin-top:10px;"><a href="mailto:treasurer@bangorscholarshipfoundation.org" style="color:var(--red);">treasurer@bangorscholarshipfoundation.org</a><br><span style="font-size:12px;color:var(--muted);">Treasurer &mdash; donations</span></p>
         </div>
         <div class="contact-info-item">
           <h4>Follow us</h4>
@@ -1742,7 +1957,7 @@ img { display: block; max-width: 100%; }
         <!-- ✏️ UPDATE: Mailing address if it changes -->
         <div class="contact-info-item">
           <h4>Mailing address</h4>
-          <p>Bangor Scholarship Foundation<br>PO Box 123<br>Bangor, WI 54614</p>
+          <p>Bangor Scholarship Foundation<br>P.O. Box 201<br>Bangor, WI 54614</p>
         </div>
 
       </div>
@@ -1763,28 +1978,42 @@ img { display: block; max-width: 100%; }
   </div>
   <div class="rule-banner"></div>
   <div class="page-content">
-    <h2>Make a donation</h2>
-    <p style="margin-bottom:32px;">Click any option below to donate via PayPal. Every contribution makes a difference.</p>
-    <div class="donate-options">
+    <!-- ✏️ UPDATE: Totals to date (from the treasurer) -->
+    <div class="donate-options" style="grid-template-columns:repeat(2,1fr);">
       <div class="donate-option">
-        <div class="donate-amount">$25</div>
-        <h3>Supporter</h3>
-        <p>Help cover application and administrative costs so students can focus on their studies.</p>
-        <a onclick="openPayPal()" class="btn-red" style="margin-top:auto;cursor:pointer;">Donate $25</a>
+        <div class="donate-amount">150+</div>
+        <h3>Scholarships awarded</h3>
+        <p>To Bangor School District graduates since the foundation began in 1996.</p>
       </div>
       <div class="donate-option">
-        <div class="donate-amount">$100</div>
-        <h3>Contributor</h3>
-        <p>A meaningful gift that goes directly toward the annual scholarship fund for Bangor students.</p>
-        <a onclick="openPayPal()" class="btn-red" style="margin-top:auto;cursor:pointer;">Donate $100</a>
-      </div>
-      <div class="donate-option">
-        <div class="donate-amount">Any</div>
-        <h3>Custom amount</h3>
-        <p>Give any amount you choose. Every dollar is appreciated by our scholarship recipients.</p>
-        <a onclick="openPayPal()" class="btn-black" style="margin-top:auto;cursor:pointer;">Donate via PayPal</a>
+        <div class="donate-amount">$237,900</div>
+        <h3>Given to students</h3>
+        <p>Every dollar comes from alumni and local supporters. There is no paid staff and no overhead.</p>
       </div>
     </div>
+
+    <h2>Donate online</h2>
+    <p>Give any amount securely through PayPal. You can use a PayPal account or a credit or debit card.</p>
+    <p style="margin-bottom:40px;"><a onclick="openPayPal()" class="btn-red" style="cursor:pointer;">Donate via PayPal</a></p>
+
+    <h2>Other ways to give</h2>
+    <div class="donate-ways">
+      <div>
+        <h4>Mail a check</h4>
+        <!-- ✏️ UPDATE: Mailing address if it changes -->
+        <p>Make checks payable to <strong>Bangor Scholarship Foundation</strong> and mail to:<br>P.O. Box 201<br>Bangor, WI 54614</p>
+      </div>
+      <div>
+        <h4>Golf outing</h4>
+        <p>Play in or sponsor the Myrna &amp; Casey Davis Memorial Golf Outing, our biggest fundraiser of the year.</p>
+        <p><a onclick="showPage('golf')" style="cursor:pointer;">Event details &rarr;</a></p>
+      </div>
+      <div>
+        <h4>Questions about giving</h4>
+        <p>Memorial gifts, named scholarships, or anything else: email our treasurer at <a href="mailto:treasurer@bangorscholarshipfoundation.org">treasurer@bangorscholarshipfoundation.org</a>.</p>
+      </div>
+    </div>
+    <p style="margin-top:32px;font-size:13px;color:var(--muted);">All donations are deductible on your federal tax return.</p>
   </div>
 </div><!-- end #page-donate -->
 
@@ -1803,7 +2032,7 @@ img { display: block; max-width: 100%; }
       <h4>Navigate</h4>
       <nav>
         <a onclick="showPage('application')">Application</a>
-        <a onclick="openPayPal()">Donate</a>
+        <a onclick="showPage('donate')">Donate</a>
         <a onclick="showPage('golf')">Golf Outing</a>
         <a onclick="showPage('recipients')">Past Recipients</a>
         <a onclick="showPage('contact')">Contact Us</a>
@@ -1814,7 +2043,7 @@ img { display: block; max-width: 100%; }
       <nav>
         <a onclick="showPage('about')">What is BSF?</a>
         <a onclick="showPage('bylaws')">By Laws</a>
-        <a onclick="showPage('home')">Newsletters</a>
+        <a onclick="showPage('newsletters')">Newsletters</a>
         <a onclick="openFB()">Facebook</a>
       </nav>
     </div>
@@ -1841,6 +2070,16 @@ function showPage(id) {
   document.getElementById('main-nav').classList.remove('open');
   // Trigger fade-ins
   setTimeout(initFadeIns, 50);
+}
+
+// ── Open one newsletter on the Newsletters page ──────────────
+function openNewsletter(year) {
+  showPage('newsletters');
+  var el = document.getElementById('nl-' + year);
+  if (el) {
+    el.open = true;
+    setTimeout(function () { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 350);
+  }
 }
 
 // ── External links ───────────────────────────────────────────
