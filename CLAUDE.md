@@ -23,7 +23,8 @@ Single-file static site (`index.html`) for the Bangor Scholarship Foundation (BS
 
 ## Open items
 - Golf "Email to register" button emails the president. Swap in an online form if one exists.
-- Gerald and Marcella Horman Scholarship amount is unknown, so the About page lists it without one.
+- Gerald and Marcella Horman Scholarship amount varies (historically about $2,500), so the About page lists it without one on purpose.
+- 2027 golf entry fee is TBD; the golf page, sidebar and home banner say "to be announced". Fill it in when set.
 - The 2020 newsletter PDF on the old site was a dead link; the 2020 letter is on the site as text only. 2022–2025 were never PDFs.
 - Point the bangorscholarship.com domain at Vercel once the board is ready to retire the WordPress site.
 
