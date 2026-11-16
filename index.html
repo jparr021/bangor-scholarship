@@ -20,6 +20,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#C8102E">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<!-- Vercel Web Analytics (turned on in the Vercel dashboard). Page views are sent by route() so #golf, #donate, etc. each count as their own page. -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js" data-disable-auto-track="1"></script>
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -2140,6 +2143,7 @@ var PAGE_TITLES = {
   about: 'About BSF', bylaws: 'By Laws', newsletters: 'Newsletters', contact: 'Contact Us', donate: 'Donate'
 };
 
+var lastTrackedPage = null;
 function route(initial) {
   var parts  = location.hash.replace(/^#\/?/, '').split('/');
   var id     = parts[0] || 'home';
@@ -2154,6 +2158,13 @@ function route(initial) {
   });
   document.title = (PAGE_TITLES[id] ? PAGE_TITLES[id] + ' | ' : '') + 'Bangor Scholarship Foundation';
   closeMobileNav();
+
+  // Analytics: count a page view when the visitor lands on a different page
+  if (id !== lastTrackedPage) {
+    lastTrackedPage = id;
+    var path = id === 'home' ? '/' : '/' + id;
+    window.va('pageview', { route: path, path: path });
+  }
 
   var behavior = initial ? 'auto' : 'smooth';
   var target = parts[1] && document.getElementById(parts[1]);

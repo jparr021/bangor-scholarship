@@ -8,6 +8,7 @@ Single-file static site (`index.html`) for the Bangor Scholarship Foundation (BS
 - Each page has its own shareable link: `#golf`, `#application`, etc. Link to a page with a plain `<a href="#golf">`. A second part jumps to an element on that page and opens it if it's a `<details>`: `#bylaws/article-3`, `#newsletters/nl-2023`, `#about/officers`. `route()` in the script at the bottom handles this; `showPage('NAME')` still works too.
 - Site-wide values (Facebook URL, PayPal URL, contact email) are JS variables near the top of `<body>`: `FB_URL`, `PAYPAL_URL`, `CONTACT_EMAIL`. Links that use them are written `<a href="#" data-link="paypal|facebook|email">`; the script fills in the real address.
 - Search/sharing tags (description, Facebook preview) are in `<head>` and use the live address `https://www.bangorscholarshipfoundation.org`. Change them if the domain moves. The Facebook preview image is `images/share.png` (1200×630); icons are `favicon.svg` and `apple-touch-icon.png`.
+- Vercel Web Analytics is on (Vercel dashboard → Analytics). The script tag is in `<head>`; `route()` sends a page view each time the visitor moves to a different page, reported as `/golf`, `/donate`, etc. (Vercel's tracker ignores `#` links on its own.)
 - Every link must have an `href` (keyboard and screen-reader access). Don't use `<a onclick>` without one.
 - Edit spots are marked with `✏️` comments. Search for `✏️` to find them.
 - Design: red `#C8102E`, black, white (school colors). Fonts: Playfair Display + Barlow.
