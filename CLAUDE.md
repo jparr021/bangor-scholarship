@@ -21,7 +21,6 @@ Single-file static site (`index.html`) for the Bangor Scholarship Foundation (BS
 - `PAYPAL_URL` is a placeholder (`YOURCODE`). Needs the real PayPal donate link.
 - `CONTACT_EMAIL` is `info@bangorscholarship.com`, which is unconfirmed. The application page uses `president@bangorscholarshipfoundation.org` (Kelly Peterson).
 - Contact page mailing address says `PO Box 123`. The application says `P.O. Box 201, Bangor, WI 54614`, so this is likely wrong.
-- Home page stat says `29+` years. Founded 1996, so it should read 30+ as of 2026.
 - Newsletter list stops at 2024, and the PDFs are not in `newsletters/` yet. The old site has the 2025 newsletter; add it too.
 - Application download links still point at files on the old WordPress site (bangorscholarship.com/wp-content/...). They break if that site goes away, so move the files into this repo (e.g. `application/`).
 - By Laws and About text were copied from the old site. The Officers & Board and Scholarship Amount pages on the old site (`/what-is-bsf/officers-board-of-directors/`, `/what-is-bsf/scholarship-amount/`) have not been imported yet.
