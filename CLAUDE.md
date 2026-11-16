@@ -4,8 +4,11 @@ Single-file static site (`index.html`) for the Bangor Scholarship Foundation (BS
 
 ## How the site works
 - Everything (HTML, CSS, JS) lives in `index.html`. Downloadable files live in `application/` (scholarship application) and `newsletters/` (older newsletter PDFs).
-- Pages are `<div id="page-NAME" class="page">` blocks, switched by `showPage('NAME')`. Pages: home, application, golf, recipients, about, bylaws, newsletters, contact, donate.
-- Site-wide values (Facebook URL, PayPal URL, contact email) are JS variables near the top of `<body>`: `FB_URL`, `PAYPAL_URL`, `CONTACT_EMAIL`.
+- Pages are `<div id="page-NAME" class="page">` blocks. Pages: home, application, golf, recipients, about, bylaws, newsletters, contact, donate.
+- Each page has its own shareable link: `#golf`, `#application`, etc. Link to a page with a plain `<a href="#golf">`. A second part jumps to an element on that page and opens it if it's a `<details>`: `#bylaws/article-3`, `#newsletters/nl-2023`, `#about/officers`. `route()` in the script at the bottom handles this; `showPage('NAME')` still works too.
+- Site-wide values (Facebook URL, PayPal URL, contact email) are JS variables near the top of `<body>`: `FB_URL`, `PAYPAL_URL`, `CONTACT_EMAIL`. Links that use them are written `<a href="#" data-link="paypal|facebook|email">`; the script fills in the real address.
+- Search/sharing tags (description, Facebook preview) are in `<head>` and use the live address `https://bangor-scholarship.vercel.app`. Change them if the domain moves. The Facebook preview image is `images/share.png` (1200×630); icons are `favicon.svg` and `apple-touch-icon.png`.
+- Every link must have an `href` (keyboard and screen-reader access). Don't use `<a onclick>` without one.
 - Edit spots are marked with `✏️` comments. Search for `✏️` to find them.
 - Design: red `#C8102E`, black, white (school colors). Fonts: Playfair Display + Barlow.
 - Owner (Jeff) edits HTML by hand and is comfortable with it. Keep it a simple single file; do not introduce a framework or build step unless asked.
@@ -26,4 +29,4 @@ Single-file static site (`index.html`) for the Bangor Scholarship Foundation (BS
 - Point the bangorscholarship.com domain at Vercel once the board is ready to retire the WordPress site.
 
 ## Deploying
-Push to GitHub; Vercel redeploys automatically. To preview locally, open `index.html` in a browser (or run `python3 -m http.server` and open http://localhost:8000).
+Push to GitHub; Vercel redeploys automatically. To preview locally, open `index.html` in a browser, or run `python3 -m http.server` in this folder and open http://localhost:8000. (In the Claude app's preview pane, local files open as a static copy that drops the `#page` part of the address, so test page links over the local server.)

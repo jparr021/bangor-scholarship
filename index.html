@@ -4,6 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bangor Scholarship Foundation</title>
+
+<!-- ✏️ Search & sharing. If the site moves to bangorscholarship.com, change the 3 "bangor-scholarship.vercel.app" addresses below. -->
+<meta name="description" content="The Bangor Scholarship Foundation is a volunteer-run nonprofit awarding scholarships to Bangor, Wisconsin graduates since 1996. Apply, donate, or join the annual Myrna &amp; Casey Davis Memorial Golf Outing.">
+<link rel="canonical" href="https://bangor-scholarship.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bangor Scholarship Foundation">
+<meta property="og:title" content="Bangor Scholarship Foundation">
+<meta property="og:description" content="Scholarships for Bangor, WI graduates since 1996. Apply, donate, or join the annual golf outing.">
+<meta property="og:url" content="https://bangor-scholarship.vercel.app/">
+<meta property="og:image" content="https://bangor-scholarship.vercel.app/images/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Bangor Scholarship Foundation: Investing in Bangor's next generation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#C8102E">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -52,6 +69,19 @@ img { display: block; max-width: 100%; }
 /* ── Page system ── */
 .page { display: none; }
 .page.active { display: block; }
+.page [id] { scroll-margin-top: 90px; }
+.page h1:focus { outline: none; }
+
+/* ── Keyboard focus ── */
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+.site-footer a:focus-visible, .golf-section a:focus-visible, .golf-page-hero a:focus-visible, .donate-hero a:focus-visible, .topbar a:focus-visible { outline-color: #fff; }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .fade-in { opacity: 1; transform: none; }
+}
 
 /* ── Buttons ── */
 .btn-black { background: var(--black); color: #fff; font-size: 12px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; padding: 13px 28px; display: inline-block; transition: background 0.15s; cursor: pointer; border: none; }
@@ -291,7 +321,7 @@ img { display: block; max-width: 100%; }
 <!-- TOP BAR -->
 <div class="topbar">
   <span>Bangor Scholarship Foundation &mdash; Bangor, Wisconsin &mdash; Est. 1996</span>
-  <a href="#" onclick="openFB(); return false;">
+  <a href="#" data-link="facebook">
     <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
     Facebook
   </a>
@@ -300,21 +330,21 @@ img { display: block; max-width: 100%; }
 <!-- NAV -->
 <header class="site-header">
   <div class="nav-inner">
-    <div class="nav-brand" onclick="showPage('home')">
+    <a href="#home" class="nav-brand" aria-label="Bangor Scholarship Foundation home">
       <div class="nav-mark"><span>BSF</span></div>
       <div class="nav-name">Bangor Scholarship Foundation <small>Bangor, Wisconsin</small></div>
-    </div>
+    </a>
     <nav class="nav-links" id="main-nav">
-      <a onclick="showPage('home')">Home</a>
-      <a onclick="showPage('application')">Application</a>
-      <a onclick="showPage('golf')">Golf Outing</a>
-      <a onclick="showPage('recipients')">Recipients</a>
-      <a onclick="showPage('about')">About BSF</a>
-      <a onclick="showPage('bylaws')">By Laws</a>
-      <a onclick="showPage('contact')">Contact</a>
-      <a onclick="showPage('donate')" class="donate-btn">Donate</a>
+      <a href="#home">Home</a>
+      <a href="#application">Application</a>
+      <a href="#golf">Golf Outing</a>
+      <a href="#recipients">Recipients</a>
+      <a href="#about">About BSF</a>
+      <a href="#bylaws">By Laws</a>
+      <a href="#contact">Contact</a>
+      <a href="#donate" class="donate-btn">Donate</a>
     </nav>
-    <button class="nav-toggle" id="nav-toggle" onclick="toggleMobileNav()" aria-label="Toggle menu">
+    <button class="nav-toggle" id="nav-toggle" onclick="toggleMobileNav()" aria-label="Menu" aria-controls="main-nav" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -337,8 +367,8 @@ img { display: block; max-width: 100%; }
         <h1>Investing in Bangor's <em>next generation</em></h1>
         <p class="hero-desc">The Bangor Scholarship Foundation raises funds and awards scholarships to students pursuing post-high school education. Every dollar raised stays right here in our community.</p>
         <div class="hero-ctas">
-          <a onclick="showPage('application')" class="btn-black">Apply for a scholarship</a>
-          <a onclick="showPage('about')" class="btn-outline-dark">About BSF</a>
+          <a href="#application" class="btn-black">Apply for a scholarship</a>
+          <a href="#about" class="btn-outline-dark">About BSF</a>
         </div>
       </div>
       <aside class="hero-aside">
@@ -371,19 +401,19 @@ img { display: block; max-width: 100%; }
           <div class="path-index">01</div>
           <h3>Apply for a scholarship</h3>
           <p>Students from Bangor pursuing a post-high school degree are encouraged to apply each year. Download the application and submit before the deadline.</p>
-          <a onclick="showPage('application')" class="path-arrow">Get the application</a>
+          <a href="#application" class="path-arrow">Get the application</a>
         </div>
         <div class="path-card fade-in">
           <div class="path-index">02</div>
           <h3>Donate to BSF</h3>
           <p>Your gift goes directly to scholarships for Bangor students. Contribute any amount securely through PayPal &mdash; it makes a real difference.</p>
-          <a onclick="showPage('donate')" class="path-arrow">Ways to give</a>
+          <a href="#donate" class="path-arrow">Ways to give</a>
         </div>
         <div class="path-card fade-in">
           <div class="path-index">03</div>
           <h3>Meet past recipients</h3>
           <p>We're proud of every student we've supported. See the scholars and families honored by the foundation over the years.</p>
-          <a onclick="showPage('recipients')" class="path-arrow">View recipients</a>
+          <a href="#recipients" class="path-arrow">View recipients</a>
         </div>
       </div>
     </div>
@@ -399,7 +429,7 @@ img { display: block; max-width: 100%; }
         <h2>Myrna &amp; Casey Davis Memorial Golf Outing</h2>
         <p>Fox Hollow Golf Course, Barre Mills &mdash; 9:00 AM shotgun start &mdash; $60 per golfer. All proceeds go directly toward scholarships for Bangor students.</p>
       </div>
-      <a onclick="showPage('golf')" class="btn-outline-white">Event details &rarr;</a>
+      <a href="#golf" class="btn-outline-white">Event details &rarr;</a>
     </div>
   </section>
 
@@ -410,16 +440,16 @@ img { display: block; max-width: 100%; }
         <h2 class="col-title">What is BSF?</h2>
         <p>The Bangor Scholarship Foundation is a local, not-for-profit organization which exists solely to raise funds for post-high school education scholarships. All scholarship recipients are local Bangor High School graduates, or graduates who live in the Bangor School District. Scholarships are awarded by the BSF Selection Committee, which considers scholastic achievement, community leadership, financial need, and extra-curricular involvement.</p>
         <nav class="bylaws-list">
-          <a onclick="showPage('bylaws')">Article 1 &mdash; Identification <span>&rsaquo;</span></a>
-          <a onclick="showPage('bylaws')">Article 2 &mdash; Purpose <span>&rsaquo;</span></a>
-          <a onclick="showPage('bylaws')">Article 3 &mdash; Meetings <span>&rsaquo;</span></a>
-          <a onclick="showPage('bylaws')">Article 4 &mdash; Order of Business <span>&rsaquo;</span></a>
-          <a onclick="showPage('bylaws')">Article 5 &mdash; Officers and Directors <span>&rsaquo;</span></a>
-          <a onclick="showPage('bylaws')">Article 6 &mdash; Election of Officers and Directors <span>&rsaquo;</span></a>
-          <a onclick="showPage('bylaws')">Article 7 &mdash; Duties of Officers <span>&rsaquo;</span></a>
-          <a onclick="showPage('bylaws')">Article 8 &mdash; Board of Directors <span>&rsaquo;</span></a>
-          <a onclick="showPage('bylaws')">Article 9 &mdash; Reimbursement <span>&rsaquo;</span></a>
-          <a onclick="showPage('bylaws')">Article 10 &mdash; Membership, Dues, Discharge <span>&rsaquo;</span></a>
+          <a href="#bylaws/article-1">Article 1 &mdash; Identification <span>&rsaquo;</span></a>
+          <a href="#bylaws/article-2">Article 2 &mdash; Purpose <span>&rsaquo;</span></a>
+          <a href="#bylaws/article-3">Article 3 &mdash; Meetings <span>&rsaquo;</span></a>
+          <a href="#bylaws/article-4">Article 4 &mdash; Order of Business <span>&rsaquo;</span></a>
+          <a href="#bylaws/article-5">Article 5 &mdash; Officers and Directors <span>&rsaquo;</span></a>
+          <a href="#bylaws/article-6">Article 6 &mdash; Election of Officers and Directors <span>&rsaquo;</span></a>
+          <a href="#bylaws/article-7">Article 7 &mdash; Duties of Officers <span>&rsaquo;</span></a>
+          <a href="#bylaws/article-8">Article 8 &mdash; Board of Directors <span>&rsaquo;</span></a>
+          <a href="#bylaws/article-9">Article 9 &mdash; Reimbursement <span>&rsaquo;</span></a>
+          <a href="#bylaws/article-10">Article 10 &mdash; Membership, Dues, Discharge <span>&rsaquo;</span></a>
         </nav>
       </div>
 
@@ -441,7 +471,7 @@ img { display: block; max-width: 100%; }
               <span class="nl-year">2025</span>
               <span class="nl-name">Annual Newsletter</span>
             </div>
-            <a onclick="openNewsletter(2025)" class="nl-read" style="cursor:pointer;">Read &rarr;</a>
+            <a href="#newsletters/nl-2025" class="nl-read">Read &rarr;</a>
           </div>
 
           <div class="nl-row">
@@ -449,7 +479,7 @@ img { display: block; max-width: 100%; }
               <span class="nl-year">2024</span>
               <span class="nl-name">Annual Newsletter</span>
             </div>
-            <a onclick="openNewsletter(2024)" class="nl-read" style="cursor:pointer;">Read &rarr;</a>
+            <a href="#newsletters/nl-2024" class="nl-read">Read &rarr;</a>
           </div>
 
           <div class="nl-row">
@@ -457,7 +487,7 @@ img { display: block; max-width: 100%; }
               <span class="nl-year">2023</span>
               <span class="nl-name">Annual Newsletter</span>
             </div>
-            <a onclick="openNewsletter(2023)" class="nl-read" style="cursor:pointer;">Read &rarr;</a>
+            <a href="#newsletters/nl-2023" class="nl-read">Read &rarr;</a>
           </div>
 
           <div class="nl-row">
@@ -465,7 +495,7 @@ img { display: block; max-width: 100%; }
               <span class="nl-year">2022</span>
               <span class="nl-name">Annual Newsletter</span>
             </div>
-            <a onclick="openNewsletter(2022)" class="nl-read" style="cursor:pointer;">Read &rarr;</a>
+            <a href="#newsletters/nl-2022" class="nl-read">Read &rarr;</a>
           </div>
 
           <div class="nl-row">
@@ -473,13 +503,13 @@ img { display: block; max-width: 100%; }
               <span class="nl-year">2021</span>
               <span class="nl-name">Annual Newsletter</span>
             </div>
-            <a onclick="openNewsletter(2021)" class="nl-read" style="cursor:pointer;">Read &rarr;</a>
+            <a href="#newsletters/nl-2021" class="nl-read">Read &rarr;</a>
           </div>
 
           <!-- END NEWSLETTERS -->
 
         </div>
-        <a onclick="showPage('newsletters')" class="nl-all">All newsletters (2016&ndash;present) &rarr;</a>
+        <a href="#newsletters" class="nl-all">All newsletters (2016&ndash;present) &rarr;</a>
       </div>
     </div>
   </div>
@@ -629,7 +659,7 @@ img { display: block; max-width: 100%; }
           <p><strong>Location:</strong><br>Fox Hollow Golf Course<br>Barre Mills, WI</p>
           <p><strong>Start time:</strong><br>9:00 AM shotgun start</p>
           <p><strong>Entry fee:</strong><br>$60 per golfer<br><em style="font-size:12px;">Includes green fees, cart &amp; entry</em></p>
-          <p><strong>Questions?</strong><br><a href="#" onclick="openEmail(); return false;" style="color:var(--red);" id="contact-email-golf">Email us</a></p>
+          <p><strong>Questions?</strong><br><a href="#" data-link="email" style="color:var(--red);" id="contact-email-golf">Email us</a></p>
         </div>
       </aside>
     </div>
@@ -1653,10 +1683,10 @@ img { display: block; max-width: 100%; }
       <aside>
         <div class="content-sidebar">
           <h3>Quick links</h3>
-          <p><a onclick="showPage('application')" style="color:var(--red);cursor:pointer;">Apply for a scholarship &rarr;</a></p>
-          <p><a onclick="showPage('golf')" style="color:var(--red);cursor:pointer;">Golf outing &rarr;</a></p>
-          <p><a onclick="showPage('bylaws')" style="color:var(--red);cursor:pointer;">Read our by laws &rarr;</a></p>
-          <p><a onclick="showPage('donate')" style="color:var(--red);cursor:pointer;">Donate &rarr;</a></p>
+          <p><a href="#application" style="color:var(--red);">Apply for a scholarship &rarr;</a></p>
+          <p><a href="#golf" style="color:var(--red);">Golf outing &rarr;</a></p>
+          <p><a href="#bylaws" style="color:var(--red);">Read our by laws &rarr;</a></p>
+          <p><a href="#donate" style="color:var(--red);">Donate &rarr;</a></p>
         </div>
       </aside>
     </div>
@@ -1941,17 +1971,17 @@ img { display: block; max-width: 100%; }
       <div class="contact-info-block">
         <div class="contact-info-item">
           <h4>Email</h4>
-          <p><a href="#" id="contact-email-link" style="color:var(--red);">Click to email us</a><br><span style="font-size:12px;color:var(--muted);">President &mdash; general &amp; scholarship questions</span></p>
+          <p><a href="#" data-link="email" id="contact-email-link" style="color:var(--red);">Click to email us</a><br><span style="font-size:12px;color:var(--muted);">President &mdash; general &amp; scholarship questions</span></p>
           <p style="margin-top:10px;"><a href="mailto:treasurer@bangorscholarshipfoundation.org" style="color:var(--red);">treasurer@bangorscholarshipfoundation.org</a><br><span style="font-size:12px;color:var(--muted);">Treasurer &mdash; donations</span></p>
         </div>
         <div class="contact-info-item">
           <h4>Follow us</h4>
-          <p><a href="#" onclick="openFB(); return false;" style="color:var(--red);">Facebook &rarr;</a></p>
+          <p><a href="#" data-link="facebook" style="color:var(--red);">Facebook &rarr;</a></p>
         </div>
         <div class="contact-info-item">
           <h4>Donate</h4>
           <p>Support BSF students by making a donation through PayPal.</p>
-          <p style="margin-top:12px;"><a onclick="openPayPal()" class="btn-red" style="display:inline-block;cursor:pointer;">Donate now</a></p>
+          <p style="margin-top:12px;"><a href="#" data-link="paypal" class="btn-red" style="display:inline-block;">Donate now</a></p>
         </div>
 
         <!-- ✏️ UPDATE: Mailing address if it changes -->
@@ -1994,7 +2024,7 @@ img { display: block; max-width: 100%; }
 
     <h2>Donate online</h2>
     <p>Give any amount securely through PayPal. You can use a PayPal account or a credit or debit card.</p>
-    <p style="margin-bottom:40px;"><a onclick="openPayPal()" class="btn-red" style="cursor:pointer;">Donate via PayPal</a></p>
+    <p style="margin-bottom:40px;"><a href="#" data-link="paypal" class="btn-red">Donate via PayPal</a></p>
 
     <h2>Other ways to give</h2>
     <div class="donate-ways">
@@ -2006,7 +2036,7 @@ img { display: block; max-width: 100%; }
       <div>
         <h4>Golf outing</h4>
         <p>Play in or sponsor the Myrna &amp; Casey Davis Memorial Golf Outing, our biggest fundraiser of the year.</p>
-        <p><a onclick="showPage('golf')" style="cursor:pointer;">Event details &rarr;</a></p>
+        <p><a href="#golf">Event details &rarr;</a></p>
       </div>
       <div>
         <h4>Questions about giving</h4>
@@ -2031,20 +2061,20 @@ img { display: block; max-width: 100%; }
     <div>
       <h4>Navigate</h4>
       <nav>
-        <a onclick="showPage('application')">Application</a>
-        <a onclick="showPage('donate')">Donate</a>
-        <a onclick="showPage('golf')">Golf Outing</a>
-        <a onclick="showPage('recipients')">Past Recipients</a>
-        <a onclick="showPage('contact')">Contact Us</a>
+        <a href="#application">Application</a>
+        <a href="#donate">Donate</a>
+        <a href="#golf">Golf Outing</a>
+        <a href="#recipients">Past Recipients</a>
+        <a href="#contact">Contact Us</a>
       </nav>
     </div>
     <div>
       <h4>Organization</h4>
       <nav>
-        <a onclick="showPage('about')">What is BSF?</a>
-        <a onclick="showPage('bylaws')">By Laws</a>
-        <a onclick="showPage('newsletters')">Newsletters</a>
-        <a onclick="openFB()">Facebook</a>
+        <a href="#about">What is BSF?</a>
+        <a href="#bylaws">By Laws</a>
+        <a href="#newsletters">Newsletters</a>
+        <a href="#" data-link="facebook">Facebook</a>
       </nav>
     </div>
   </div>
@@ -2057,51 +2087,84 @@ img { display: block; max-width: 100%; }
 
 <script>
 // ── Page navigation ──────────────────────────────────────────
-function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  var el = document.getElementById('page-' + id);
-  if (el) {
-    el.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+// Every page has its own link: #golf, #application, etc.
+// A second part jumps to something on that page:
+//   #bylaws/article-3   #newsletters/nl-2023   #about/officers
+var PAGE_TITLES = {
+  application: 'Scholarship Application', golf: 'Golf Outing', recipients: 'Past Recipients',
+  about: 'About BSF', bylaws: 'By Laws', newsletters: 'Newsletters', contact: 'Contact Us', donate: 'Donate'
+};
+
+function route(initial) {
+  var parts  = location.hash.replace(/^#\/?/, '').split('/');
+  var id     = parts[0] || 'home';
+  var page   = document.getElementById('page-' + id);
+  if (!page) { id = 'home'; page = document.getElementById('page-home'); parts = []; }
+
+  document.querySelectorAll('.page').forEach(function (p) { p.classList.toggle('active', p === page); });
+  document.querySelectorAll('.nav-links a').forEach(function (a) {
+    var on = a.getAttribute('href') === '#' + id;
+    a.classList.toggle('active', on);
+    if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+  });
+  document.title = (PAGE_TITLES[id] ? PAGE_TITLES[id] + ' | ' : '') + 'Bangor Scholarship Foundation';
+  closeMobileNav();
+
+  var behavior = initial ? 'auto' : 'smooth';
+  var target = parts[1] && document.getElementById(parts[1]);
+  if (target && page.contains(target)) {
+    if (target.tagName === 'DETAILS') target.open = true;
+    setTimeout(function () { target.scrollIntoView({ behavior: behavior, block: 'start' }); }, 50);
+  } else {
+    window.scrollTo({ top: 0, behavior: behavior });
   }
-  // Update active nav link
-  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-  // Close mobile nav
-  document.getElementById('main-nav').classList.remove('open');
-  // Trigger fade-ins
+  // Move keyboard/screen-reader focus to the new page's heading
+  if (!initial) {
+    var h1 = page.querySelector('h1');
+    if (h1) { h1.setAttribute('tabindex', '-1'); h1.focus({ preventScroll: true }); }
+  }
   setTimeout(initFadeIns, 50);
 }
 
-// ── Open one newsletter on the Newsletters page ──────────────
-function openNewsletter(year) {
-  showPage('newsletters');
-  var el = document.getElementById('nl-' + year);
-  if (el) {
-    el.open = true;
-    setTimeout(function () { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 350);
-  }
+// Kept so hand-written onclick="showPage('golf')" still works
+function showPage(id) {
+  if (location.hash === '#' + id) route(false); else location.hash = id;
 }
 
-// ── External links ───────────────────────────────────────────
-function openPayPal() { window.open(PAYPAL_URL, '_blank'); }
-function openFB()     { window.open(FB_URL, '_blank'); }
-function openEmail()  { window.location.href = 'mailto:' + CONTACT_EMAIL; }
+window.addEventListener('hashchange', function () { route(false); });
 
-// ── Set email links ──────────────────────────────────────────
+// Clicking a link to the page you're already on scrolls back to the top
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href^="#"]');
+  if (a && !a.hasAttribute('data-link') && a.getAttribute('href') === location.hash) {
+    e.preventDefault();
+    route(false);
+  }
+});
+
+// ── External links and email (values from the top of the file) ──
 window.addEventListener('DOMContentLoaded', function () {
-  document.getElementById('footer-year').textContent = new Date().getFullYear();
-  var emailEls = document.querySelectorAll('#contact-email-link, #contact-email-golf');
-  emailEls.forEach(function(el) {
-    el.href = 'mailto:' + CONTACT_EMAIL;
+  var links = { facebook: FB_URL, paypal: PAYPAL_URL, email: 'mailto:' + CONTACT_EMAIL };
+  document.querySelectorAll('[data-link]').forEach(function (a) {
+    a.href = links[a.getAttribute('data-link')];
+    if (a.getAttribute('data-link') !== 'email') { a.target = '_blank'; a.rel = 'noopener'; }
+  });
+  document.querySelectorAll('#contact-email-link, #contact-email-golf').forEach(function (el) {
     el.textContent = CONTACT_EMAIL;
   });
-  initFadeIns();
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  route(true);
 });
 
 // ── Mobile nav ───────────────────────────────────────────────
 function toggleMobileNav() {
   var nav = document.getElementById('main-nav');
-  nav.classList.toggle('open');
+  var open = nav.classList.toggle('open');
+  document.getElementById('nav-toggle').setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+function closeMobileNav() {
+  document.getElementById('main-nav').classList.remove('open');
+  document.getElementById('nav-toggle').setAttribute('aria-expanded', 'false');
 }
 
 // ── Contact form (opens email client) ────────────────────────
