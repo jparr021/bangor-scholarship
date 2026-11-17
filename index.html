@@ -233,6 +233,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .golf-detail-item h4 { font-family: var(--cond); font-size: 13px; font-weight: 600; color: var(--red); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 4px; }
 .golf-detail-item p { font-size: 14px; color: #aaa; font-weight: 300; }
 
+[hidden] { display: none !important; }
 .golf-register { margin-top: 48px; padding-top: 40px; border-top: 4px solid var(--red); scroll-margin-top: 90px; }
 .golf-form { margin-top: 24px; }
 .golf-form fieldset { border: none; margin: 8px 0 10px; padding: 0; }
@@ -378,6 +379,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 <!-- ✏️ UPDATE: Golf registration Web app URL (ends in /exec). Setup steps are in setup/golf-registration.gs.
      While this is empty, the golf form opens an email to CONTACT_EMAIL instead. -->
 <script>var GOLF_FORM_URL = "https://script.google.com/macros/s/AKfycbwTan8rhxYYeY32ivzmx1a0JmtxNPlEY0B1uf_eoRlxVDRghBIVLlflSu0Fl40_a0Rv/exec";</script>
+
+<!-- ✏️ UPDATE: Golf registration on/off. false = form and "Register a team" button are hidden and the golf page
+     says registration opens closer to the outing. Change to true when you're ready to take sign-ups. -->
+<script>var GOLF_REGISTRATION_OPEN = false;</script>
 
 
 <!-- TOP BAR -->
@@ -687,7 +692,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
         <h1 style="font-family:var(--serif);font-size:42px;font-weight:400;color:#fff;line-height:1.15;margin-bottom:12px;">Myrna &amp; Casey Davis<br>Memorial Golf Outing</h1>
         <p style="font-size:14px;color:#888;font-weight:300;line-height:1.75;">All proceeds go directly to scholarships for Bangor students.</p>
       </div>
-      <a href="#golf/register" class="btn-red">Register a team</a>
+      <a href="#golf/register" class="btn-red" id="golf-register-btn">Register a team</a>
     </div>
   </div>
   <div class="rule-banner"></div>
@@ -737,7 +742,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
         <!-- Team registration. Entries go to the Google Sheet set up in setup/golf-registration.gs (GOLF_FORM_URL at the top of this file). -->
         <section id="register" class="golf-register">
           <h2>Register your team</h2>
-          <p>Teams of four. Enter all four golfers' names. Payment is made when you arrive.</p>
+          <!-- Shown while GOLF_REGISTRATION_OPEN is false -->
+          <p id="golf-reg-closed" hidden>Online registration will open closer to the outing. Check back in the spring, or follow us on <a href="#" data-link="facebook">Facebook</a> for updates.</p>
+          <p id="golf-reg-intro">Teams of four. Enter all four golfers' names. Payment is made when you arrive.</p>
           <form class="contact-form golf-form" id="golf-form" novalidate>
             <label for="gf-team">Team name <span class="optional">(optional)</span></label>
             <input type="text" id="gf-team" name="team" maxlength="100">
@@ -2377,6 +2384,12 @@ function submitForm(e) {
 // ── Golf team registration ───────────────────────────────────
 // Sends the form to the Google Sheet web app (GOLF_FORM_URL). Until that's set,
 // it opens an email with the details filled in.
+if (!GOLF_REGISTRATION_OPEN) {
+  document.getElementById('golf-form').hidden = true;
+  document.getElementById('golf-reg-intro').hidden = true;
+  document.getElementById('golf-register-btn').hidden = true;
+  document.getElementById('golf-reg-closed').hidden = false;
+}
 document.getElementById('golf-form').addEventListener('submit', function (e) {
   e.preventDefault();
   var form = e.target, status = document.getElementById('gf-status'), btn = document.getElementById('gf-submit');
