@@ -25,6 +25,7 @@
 <script defer src="/_vercel/insights/script.js" data-disable-auto-track="1"></script>
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,7 +35,8 @@
   --black: #0d0d0d;
   --charcoal: #1c1c1c;
   --mid: #555;
-  --muted: #888;
+  --muted: #707070;        /* small gray text; #707070 passes the 4.5:1 contrast minimum on white */
+  --field-border: #8c8c8c; /* form field borders */
   --rule: #e0e0de;
   --bg: #fafaf8;
   --white: #ffffff;
@@ -67,7 +69,7 @@ img { display: block; max-width: 100%; }
 .nav-links a:hover, .nav-links a.active { color: var(--black); }
 .donate-btn { background: var(--red); color: #fff !important; padding: 8px 22px; margin-left: 10px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; font-size: 11px; transition: background 0.15s; }
 .donate-btn:hover { background: var(--red-dark) !important; }
-.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; flex-direction: column; gap: 5px; }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 14px 10px; margin-right: -6px; flex-direction: column; gap: 5px; } /* 44×44 tap area */
 .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--black); border-radius: 2px; }
 
 /* ── Page system ── */
@@ -79,6 +81,10 @@ img { display: block; max-width: 100%; }
 /* ── Keyboard focus ── */
 a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
 .site-footer a:focus-visible, .hero-wrap a:focus-visible, .golf-section a:focus-visible, .golf-page-hero a:focus-visible, .donate-hero a:focus-visible, .topbar a:focus-visible { outline-color: #fff; }
+
+/* ── Skip link: off-screen until focused ── */
+.skip-link { position: absolute; left: 16px; top: -100px; z-index: 200; background: var(--black); color: #fff; padding: 12px 20px; font-size: 14px; font-weight: 600; }
+.skip-link:focus { top: 12px; outline: 2px solid #fff; outline-offset: 2px; }
 
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
@@ -212,7 +218,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .app-step:last-child { border-bottom: none; }
 .app-step-num { background: var(--red); color: #fff; font-family: var(--serif); font-size: 20px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
 .app-step-body { padding: 18px 24px; }
-.app-step-body h4 { font-size: 14px; font-weight: 600; color: var(--black); margin-bottom: 4px; }
+.app-step-body h3 { font-family: var(--sans); margin-top: 0; font-size: 14px; font-weight: 600; color: var(--black); margin-bottom: 4px; }
 .app-step-body p { font-size: 13px; color: var(--mid); font-weight: 300; margin-bottom: 0; }
 
 /* ── Recipients grid ── */
@@ -257,16 +263,17 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 /* ── Contact ── */
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
 .contact-form input, .contact-form textarea {
-  width: 100%; padding: 11px 14px; border: 1px solid var(--rule);
-  background: var(--white); font-family: var(--sans); font-size: 13.5px;
+  /* 16px text keeps iPhones from zooming in on tap; the border is dark enough to see (3:1) */
+  width: 100%; padding: 11px 14px; border: 1px solid var(--field-border);
+  background: var(--white); font-family: var(--sans); font-size: max(1rem, 16px);
   color: var(--black); font-weight: 300; margin-bottom: 14px; display: block;
-  transition: border-color 0.15s; border-radius: 0; -webkit-appearance: none;
+  transition: border-color 0.15s, box-shadow 0.15s; border-radius: 0; -webkit-appearance: none;
 }
-.contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--red); }
+.contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--red); box-shadow: 0 0 0 1px var(--red); }
 .contact-form textarea { min-height: 130px; resize: vertical; }
 .contact-form label { font-family: var(--cond); font-size: 13px; font-weight: 600; color: var(--mid); letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 6px; }
 .contact-info-block { display: flex; flex-direction: column; gap: 28px; }
-.contact-info-item h4 { font-family: var(--cond); font-size: 13px; font-weight: 600; color: var(--red); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px; }
+.contact-info-item h3 { margin-top: 0; font-family: var(--cond); font-size: 13px; font-weight: 600; color: var(--red); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px; }
 .contact-info-item p { font-size: 14px; color: var(--mid); line-height: 1.75; font-weight: 300; }
 
 /* ── Donate ── */
@@ -311,7 +318,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 
 /* ── Donate: other ways ── */
 .donate-ways { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-.donate-ways h4 { font-family: var(--cond); font-size: 13px; font-weight: 600; color: var(--red); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px; }
+.donate-ways h3 { margin-top: 0; font-family: var(--cond); font-size: 13px; font-weight: 600; color: var(--red); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px; }
 
 /* ── Footer ── */
 .site-footer { background: var(--black); }
@@ -321,7 +328,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .footer-mark span { font-family: var(--serif); font-size: 13px; color: var(--red); font-weight: 700; }
 .footer-brand-name { font-size: 14px; font-weight: 600; color: #fff; }
 .footer-about p { font-size: 12.5px; color: #555; line-height: 1.8; font-weight: 300; }
-.site-footer h4 { font-size: 10px; font-weight: 600; color: #fff; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+.site-footer h2 { font-family: var(--sans); font-size: 10px; font-weight: 600; color: #fff; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
 .site-footer nav a { display: block; font-size: 12.5px; color: #555; line-height: 2; font-weight: 300; transition: color 0.15s; cursor: pointer; }
 .site-footer nav a:hover { color: #ccc; }
 .footer-bottom { max-width: 1140px; margin: 0 auto; padding: 18px 48px; display: flex; justify-content: space-between; font-size: 11px; color: #333; font-weight: 300; }
@@ -385,6 +392,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 <script>var GOLF_REGISTRATION_OPEN = false;</script>
 
 
+<!-- Hidden until a keyboard user tabs to it; jumps past the header to the page's heading -->
+<a href="#main" class="skip-link" id="skip-link">Skip to main content</a>
+
 <!-- TOP BAR -->
 <div class="topbar">
   <span>Bangor Scholarship Foundation &mdash; Bangor, Wisconsin &mdash; Est. 1996</span>
@@ -411,12 +421,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
       <a href="#contact">Contact</a>
       <a href="#donate" class="donate-btn">Donate</a>
     </nav>
-    <button class="nav-toggle" id="nav-toggle" onclick="toggleMobileNav()" aria-label="Menu" aria-controls="main-nav" aria-expanded="false">
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-controls="main-nav" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 
+<main id="main">
 
 <!-- ============================================================
   PAGE: HOME
@@ -629,21 +640,21 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
           <div class="app-step">
             <div class="app-step-num">1</div>
             <div class="app-step-body">
-              <h4>Download the application</h4>
+              <h3>Download the application</h3>
               <p>Choose your preferred format below — Google Doc, Word, or PDF.</p>
             </div>
           </div>
           <div class="app-step">
             <div class="app-step-num">2</div>
             <div class="app-step-body">
-              <h4>Complete all sections</h4>
+              <h3>Complete all sections</h3>
               <p>Fill out every section in full. Incomplete applications will not be considered. Attach extra pages if needed.</p>
             </div>
           </div>
           <div class="app-step">
             <div class="app-step-num">3</div>
             <div class="app-step-body">
-              <h4>Submit before the deadline</h4>
+              <h3>Submit before the deadline</h3>
               <!-- ✏️ UPDATE: Application deadline each year -->
               <p>Applications are due no later than <strong>March 15, 2027</strong>.</p>
             </div>
@@ -651,7 +662,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
           <div class="app-step">
             <div class="app-step-num">4</div>
             <div class="app-step-body">
-              <h4>Where to submit</h4>
+              <h3>Where to submit</h3>
               <!-- ✏️ UPDATE: Submission instructions if they change -->
               <p>Return to your school guidance counselor, or mail directly to: Bangor Scholarship Foundation, P.O. Box 201, Bangor, WI 54614.</p>
             </div>
@@ -756,7 +767,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
               <div class="form-row">
                 <div>
                   <label for="gf-email">Email</label>
-                  <input type="email" id="gf-email" name="email" autocomplete="email" required>
+                  <input type="email" id="gf-email" name="email" autocomplete="email" autocapitalize="none" autocorrect="off" spellcheck="false" required>
                 </div>
                 <div>
                   <label for="gf-phone">Phone</label>
@@ -2149,37 +2160,37 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
       <div>
         <h2>Send us a message</h2>
         <p style="margin-bottom:24px;">Fill out the form below and we'll get back to you as soon as possible.</p>
-        <form class="contact-form" id="contact-form" onsubmit="submitForm(event)">
+        <form class="contact-form" id="contact-form">
           <label for="cf-name">Your name</label>
-          <input type="text" id="cf-name" placeholder="Jane Smith" required>
+          <input type="text" id="cf-name" name="name" autocomplete="name" placeholder="Jane Smith" required>
           <label for="cf-email">Email address</label>
-          <input type="email" id="cf-email" placeholder="jane@example.com" required>
+          <input type="email" id="cf-email" name="email" autocomplete="email" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="jane@example.com" required>
           <label for="cf-subject">Subject</label>
-          <input type="text" id="cf-subject" placeholder="Scholarship question">
+          <input type="text" id="cf-subject" name="subject" placeholder="Scholarship question">
           <label for="cf-message">Message</label>
-          <textarea id="cf-message" placeholder="Your message..." required></textarea>
+          <textarea id="cf-message" name="message" placeholder="Your message..." required></textarea>
           <button type="submit" class="btn-black">Send message</button>
         </form>
       </div>
       <div class="contact-info-block">
         <div class="contact-info-item">
-          <h4>Email</h4>
+          <h3>Email</h3>
           <p><a href="#" data-link="email" id="contact-email-link" style="color:var(--red);">Click to email us</a><br><span style="font-size:12px;color:var(--muted);">President &mdash; general &amp; scholarship questions</span></p>
           <p style="margin-top:10px;"><a href="mailto:treasurer@bangorscholarshipfoundation.org" style="color:var(--red);">treasurer@bangorscholarshipfoundation.org</a><br><span style="font-size:12px;color:var(--muted);">Treasurer &mdash; donations</span></p>
         </div>
         <div class="contact-info-item">
-          <h4>Follow us</h4>
+          <h3>Follow us</h3>
           <p><a href="#" data-link="facebook" style="color:var(--red);">Facebook &rarr;</a></p>
         </div>
         <div class="contact-info-item">
-          <h4>Donate</h4>
+          <h3>Donate</h3>
           <p>Support BSF students by making a donation through PayPal.</p>
           <p style="margin-top:12px;"><a href="#" data-link="paypal" class="btn-red" style="display:inline-block;">Donate now</a></p>
         </div>
 
         <!-- ✏️ UPDATE: Mailing address if it changes -->
         <div class="contact-info-item">
-          <h4>Mailing address</h4>
+          <h3>Mailing address</h3>
           <p>Bangor Scholarship Foundation<br>P.O. Box 201<br>Bangor, WI 54614</p>
         </div>
 
@@ -2223,23 +2234,25 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
     <h2>Other ways to give</h2>
     <div class="donate-ways">
       <div>
-        <h4>Mail a check</h4>
+        <h3>Mail a check</h3>
         <!-- ✏️ UPDATE: Mailing address if it changes -->
         <p>Make checks payable to <strong>Bangor Scholarship Foundation</strong> and mail to:<br>P.O. Box 201<br>Bangor, WI 54614</p>
       </div>
       <div>
-        <h4>Golf outing</h4>
+        <h3>Golf outing</h3>
         <p>Play in or sponsor the Myrna &amp; Casey Davis Memorial Golf Outing, our biggest fundraiser of the year.</p>
         <p><a href="#golf">Event details &rarr;</a></p>
       </div>
       <div>
-        <h4>Questions about giving</h4>
+        <h3>Questions about giving</h3>
         <p>Memorial gifts, named scholarships, or anything else: email our treasurer at <a href="mailto:treasurer@bangorscholarshipfoundation.org">treasurer@bangorscholarshipfoundation.org</a>.</p>
       </div>
     </div>
     <p style="margin-top:32px;font-size:13px;color:var(--muted);">All donations are deductible on your federal tax return.</p>
   </div>
 </div><!-- end #page-donate -->
+
+</main>
 
 
 <!-- FOOTER -->
@@ -2253,7 +2266,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
       <p>Raising funds and awarding scholarships to Bangor students since 1996. A volunteer-run nonprofit proudly serving Bangor, Wisconsin.</p>
     </div>
     <div>
-      <h4>Navigate</h4>
+      <h2>Navigate</h2>
       <nav>
         <a href="#application">Application</a>
         <a href="#donate">Donate</a>
@@ -2263,7 +2276,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
       </nav>
     </div>
     <div>
-      <h4>Organization</h4>
+      <h2>Organization</h2>
       <nav>
         <a href="#about">What is BSF?</a>
         <a href="#bylaws">By Laws</a>
@@ -2335,6 +2348,15 @@ function showPage(id) {
 
 window.addEventListener('hashchange', function () { route(false); });
 
+// Skip link: move focus to the current page's heading (without changing the #page address)
+document.getElementById('skip-link').addEventListener('click', function (e) {
+  e.preventDefault();
+  var h1 = document.querySelector('.page.active h1');
+  if (!h1) return;
+  h1.setAttribute('tabindex', '-1');
+  h1.focus();
+});
+
 // Clicking a link to the page you're already on scrolls back to the top
 document.addEventListener('click', function (e) {
   var a = e.target.closest && e.target.closest('a[href^="#"]');
@@ -2368,6 +2390,14 @@ function closeMobileNav() {
   document.getElementById('main-nav').classList.remove('open');
   document.getElementById('nav-toggle').setAttribute('aria-expanded', 'false');
 }
+document.getElementById('nav-toggle').addEventListener('click', toggleMobileNav);
+// Escape closes the open menu and puts focus back on the menu button
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && document.getElementById('main-nav').classList.contains('open')) {
+    closeMobileNav();
+    document.getElementById('nav-toggle').focus();
+  }
+});
 
 // ── Contact form (opens email client) ────────────────────────
 function submitForm(e) {
@@ -2380,6 +2410,7 @@ function submitForm(e) {
     '?subject=' + encodeURIComponent(subject) +
     '&body=' + encodeURIComponent(body);
 }
+document.getElementById('contact-form').addEventListener('submit', submitForm);
 
 // ── Golf team registration ───────────────────────────────────
 // Sends the form to the Google Sheet web app (GOLF_FORM_URL). Until that's set,
