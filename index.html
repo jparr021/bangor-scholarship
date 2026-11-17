@@ -233,6 +233,24 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .golf-detail-item h4 { font-family: var(--cond); font-size: 13px; font-weight: 600; color: var(--red); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 4px; }
 .golf-detail-item p { font-size: 14px; color: #aaa; font-weight: 300; }
 
+.golf-register { margin-top: 48px; padding-top: 40px; border-top: 4px solid var(--red); scroll-margin-top: 90px; }
+.golf-form { margin-top: 24px; }
+.golf-form fieldset { border: none; margin: 8px 0 10px; padding: 0; }
+.golf-form legend { font-family: var(--cond); font-size: 13px; font-weight: 700; color: var(--red); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 12px; }
+.golf-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+.golf-form .optional { text-transform: none; letter-spacing: 0; font-family: var(--sans); font-weight: 300; color: var(--muted); }
+.golf-form label.check { display: flex; align-items: center; gap: 10px; font-family: var(--sans); font-size: 14px; font-weight: 400; color: var(--black); text-transform: none; letter-spacing: 0; margin: 4px 0 20px; cursor: pointer; }
+.golf-form label.check input { width: 18px; height: 18px; margin: 0; padding: 0; accent-color: var(--red); -webkit-appearance: checkbox; appearance: auto; }
+.golf-form input.invalid { border-color: var(--red); background: #fdf3f4; }
+.golf-form button:disabled { opacity: 0.6; cursor: wait; }
+.golf-form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form-status { margin-top: 14px; font-size: 14px; }
+.form-status.error { color: var(--red); }
+.golf-done { background: var(--black); color: #fff; padding: 32px; margin-top: 24px; border-left: 4px solid var(--red); }
+.golf-done h3 { color: #fff; margin: 0 0 8px; }
+.golf-done p { color: #ccc; margin: 0; }
+@media (max-width: 600px) { .golf-form .form-row { grid-template-columns: 1fr; } }
+
 .detail-label { font-family: var(--cond); font-size: 13px; font-weight: 600; color: var(--red); letter-spacing: 0.14em; text-transform: uppercase; }
 
 /* ── Contact ── */
@@ -356,6 +374,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 
 <!-- ✏️ UPDATE: Contact email address -->
 <script>var CONTACT_EMAIL = "president@bangorscholarshipfoundation.org";</script>
+
+<!-- ✏️ UPDATE: Golf registration Web app URL (ends in /exec). Setup steps are in setup/golf-registration.gs.
+     While this is empty, the golf form opens an email to CONTACT_EMAIL instead. -->
+<script>var GOLF_FORM_URL = "https://script.google.com/macros/s/AKfycbwTan8rhxYYeY32ivzmx1a0JmtxNPlEY0B1uf_eoRlxVDRghBIVLlflSu0Fl40_a0Rv/exec";</script>
 
 
 <!-- TOP BAR -->
@@ -665,8 +687,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
         <h1 style="font-family:var(--serif);font-size:42px;font-weight:400;color:#fff;line-height:1.15;margin-bottom:12px;">Myrna &amp; Casey Davis<br>Memorial Golf Outing</h1>
         <p style="font-size:14px;color:#888;font-weight:300;line-height:1.75;">All proceeds go directly to scholarships for Bangor students.</p>
       </div>
-      <!-- ✏️ UPDATE: Registration link. Emails the president by default; swap the href for an online form if you get one. -->
-      <a href="mailto:president@bangorscholarshipfoundation.org?subject=Golf%20Outing%20Registration" class="btn-red">Email to register</a>
+      <a href="#golf/register" class="btn-red">Register a team</a>
     </div>
   </div>
   <div class="rule-banner"></div>
@@ -712,6 +733,53 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 
         </div>
         <p style="margin-top:32px;font-size:16px;font-weight:600;color:var(--black);">See you on July 3!</p>
+
+        <!-- Team registration. Entries go to the Google Sheet set up in setup/golf-registration.gs (GOLF_FORM_URL at the top of this file). -->
+        <section id="register" class="golf-register">
+          <h2>Register your team</h2>
+          <p>Teams of four. Enter all four golfers' names. Payment is made when you arrive.</p>
+          <form class="contact-form golf-form" id="golf-form" novalidate>
+            <label for="gf-team">Team name <span class="optional">(optional)</span></label>
+            <input type="text" id="gf-team" name="team" maxlength="100">
+
+            <fieldset>
+              <legend>Golfer 1 &mdash; team contact</legend>
+              <label for="gf-golfer1">Name</label>
+              <input type="text" id="gf-golfer1" name="golfer1" autocomplete="name" required>
+              <div class="form-row">
+                <div>
+                  <label for="gf-email">Email</label>
+                  <input type="email" id="gf-email" name="email" autocomplete="email" required>
+                </div>
+                <div>
+                  <label for="gf-phone">Phone</label>
+                  <input type="tel" id="gf-phone" name="phone" autocomplete="tel" required>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Teammates</legend>
+              <label for="gf-golfer2">Golfer 2</label>
+              <input type="text" id="gf-golfer2" name="golfer2" required>
+              <label for="gf-golfer3">Golfer 3</label>
+              <input type="text" id="gf-golfer3" name="golfer3" required>
+              <label for="gf-golfer4">Golfer 4</label>
+              <input type="text" id="gf-golfer4" name="golfer4" required>
+            </fieldset>
+
+            <label class="check"><input type="checkbox" id="gf-senior" name="senior" value="yes"> Enter our team in the senior division</label>
+
+            <label for="gf-notes">Notes or requests <span class="optional">(optional)</span></label>
+            <textarea id="gf-notes" name="notes" maxlength="1000"></textarea>
+
+            <!-- Spam trap: hidden from people, bots fill it in -->
+            <div class="hp" aria-hidden="true"><label for="gf-website">Website</label><input type="text" id="gf-website" name="website" tabindex="-1" autocomplete="off"></div>
+
+            <button type="submit" class="btn-red" id="gf-submit">Register team</button>
+            <p class="form-status" id="gf-status" role="status" aria-live="polite"></p>
+          </form>
+        </section>
       </div>
       <aside>
         <div class="content-sidebar">
@@ -2305,6 +2373,60 @@ function submitForm(e) {
     '?subject=' + encodeURIComponent(subject) +
     '&body=' + encodeURIComponent(body);
 }
+
+// ── Golf team registration ───────────────────────────────────
+// Sends the form to the Google Sheet web app (GOLF_FORM_URL). Until that's set,
+// it opens an email with the details filled in.
+document.getElementById('golf-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var form = e.target, status = document.getElementById('gf-status'), btn = document.getElementById('gf-submit');
+  status.className = 'form-status'; status.textContent = '';
+
+  var missing = null;
+  form.querySelectorAll('input[required]').forEach(function (el) {
+    var bad = !el.value.trim() || (el.type === 'email' && !/^\S+@\S+\.\S+$/.test(el.value.trim()));
+    el.classList.toggle('invalid', bad);
+    el.setAttribute('aria-invalid', bad ? 'true' : 'false');
+    if (bad && !missing) missing = el;
+  });
+  if (missing) {
+    status.className = 'form-status error';
+    status.textContent = 'Please fill in all four golfers’ names and a valid email and phone.';
+    missing.focus();
+    return;
+  }
+
+  var data = new URLSearchParams(new FormData(form));
+
+  if (!GOLF_FORM_URL) {
+    var lines = ['Team name: ' + (data.get('team') || '-'),
+      'Golfer 1 (contact): ' + data.get('golfer1'), 'Email: ' + data.get('email'), 'Phone: ' + data.get('phone'),
+      'Golfer 2: ' + data.get('golfer2'), 'Golfer 3: ' + data.get('golfer3'), 'Golfer 4: ' + data.get('golfer4'),
+      'Senior division: ' + (data.get('senior') ? 'Yes' : 'No'), 'Notes: ' + (data.get('notes') || '-')];
+    location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent('Golf Outing Registration') +
+      '&body=' + encodeURIComponent(lines.join('\n'));
+    return;
+  }
+
+  btn.disabled = true; btn.textContent = 'Sending…';
+  fetch(GOLF_FORM_URL, { method: 'POST', body: data })
+    .then(function (r) { return r.json(); })
+    .then(function (res) {
+      if (!res.ok) throw new Error(res.error || 'failed');
+      var done = document.createElement('div');
+      done.className = 'golf-done';
+      done.setAttribute('tabindex', '-1');
+      done.innerHTML = '<h3>You’re registered!</h3><p>Thanks, <span></span>. Your team is on the list. Payment is made when you arrive. See you on the course!</p>';
+      done.querySelector('span').textContent = data.get('golfer1');
+      form.replaceWith(done);
+      done.focus();
+    })
+    .catch(function () {
+      btn.disabled = false; btn.textContent = 'Register team';
+      status.className = 'form-status error';
+      status.innerHTML = 'Sorry, something went wrong. Please try again, or email your team to <a href="mailto:' + CONTACT_EMAIL + '?subject=Golf%20Outing%20Registration">' + CONTACT_EMAIL + '</a>.';
+    });
+});
 
 // ── Scroll fade-ins ──────────────────────────────────────────
 function initFadeIns() {
